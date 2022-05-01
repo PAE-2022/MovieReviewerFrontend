@@ -1,6 +1,6 @@
 <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
   <span>
-    <!--button mat-button routerLink="/home">{{title}}</button-->
+    <button mat-button routerLink="/home" *ngIf="!isAuthenticated">{{title}}</button>
     <button mat-button routerLink="/home" *ngIf="!isAuthenticated">
       <mat-icon>home</mat-icon>
     </button>

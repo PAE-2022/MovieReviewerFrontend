@@ -1,33 +1,37 @@
-<mat-card>
-    <mat-card-content>
-        <form>
-            <h1>Login</h1>
-            <!--mat-error>
+<body>
+
+    <mat-card>
+        <mat-card-content>
+            <form>
+                <h1>Movie Reviewer</h1>
+                <!--mat-error>
                 The username and password were not recognized
             </mat-error-->
-            <mat-form-field>
-                <input matInput placeholder="Email" name="username" required>
-                <mat-error>
-                    Please provide a valid email address
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput type="password" placeholder="Password" name="password" required>
-                <mat-error>
-                    Please provide a valid password
-                </mat-error>
-            </mat-form-field>
-            <button mat-raised-button>login</button>
-        </form>
-        <p>---------------------------------------------------------------------------</p>
-        <h2>or continue with</h2>
-        <button mat-button>
-            <mat-icon>facebook</mat-icon>
-            Facebook
-          </button>
-          <button mat-button>
-            <mat-icon>apple</mat-icon>
-            Apple ID
-          </button>
-    </mat-card-content>
-</mat-card>
+                <mat-form-field>
+                    <input matInput placeholder="Email" name="username" required>
+                    <mat-error>
+                        Please provide a valid email address
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="password" placeholder="Password" name="password" required>
+                    <mat-error>
+                        Please provide a valid password
+                    </mat-error>
+                </mat-form-field>
+                <button mat-raised-button>login</button>
+            </form>
+            <p>---------------------------------------------------------------------------</p>
+            <h2>or continue with</h2>
+            <button mat-button>
+                <mat-icon>facebook</mat-icon>
+                Facebook
+            </button>
+            <button mat-button>
+                <mat-icon>apple</mat-icon>
+                Apple ID
+            </button>
+        </mat-card-content>
+    </mat-card>
+
+</body>

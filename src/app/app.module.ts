@@ -21,13 +21,15 @@ import { MatOptionModule } from '@angular/material/core';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { MovieDatailsComponent } from './components/movie-datails/movie-datails.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MovieDatailsComponent
   ],
   imports: [
     BrowserModule,

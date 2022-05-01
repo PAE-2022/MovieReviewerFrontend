@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Movie Reviewer';
-  public isAuthenticated = true;
+  public isAuthenticated = false;
 
   public logout(): void {
     
-  }
+  } 
 }
