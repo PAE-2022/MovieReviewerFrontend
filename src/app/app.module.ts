@@ -22,6 +22,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MovieDatailsComponent } from './components/movie-datails/movie-datails.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MovieDatailsComponent } from './components/movie-datails/movie-datails.
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    MovieDatailsComponent
+    MovieDatailsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
