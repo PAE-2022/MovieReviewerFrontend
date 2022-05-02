@@ -1,0 +1,184 @@
+body {
+    background-color: black;
+    background-position:center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+
+
+}
+
+.student-profile .card {
+  border-radius: 10px;
+  display: block;
+}
+
+.student-profile .card .card-header .profile_img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: 10px auto;
+  border: 10px solid #ccc;
+  border-radius: 50%;
+}
+
+.student-profile .card h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.student-profile .card p {
+  font-size: 16px;
+  color: #000;
+}
+
+.student-profile .table th,
+.student-profile .table td {
+  font-size: 14px;
+  padding: 5px 10px;
+  color: #000;
+}
+
+.example-small-box, .example-large-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: white;
+  }
+  
+  .example-small-box {
+    height: 100px;
+    width: 100px;
+    background-color: white;
+  }
+  
+  .example-large-box {
+    height: 300px;
+    width: 95%;
+    background-color: white;
+    border-radius: 8px;
+  }
+  .mat-tab-group{
+    background-color: Accent;
+  }
+.mat-tab{
+    background-color: aliceblue;
+}
+.mat-tab-header{
+    background-color: #424242;
+}
+.example-card{
+    margin-top: 10px;
+    background-color: white;
+    color: black;
+}
+
+.profile_img {
+    width: 50px;
+    height: 50px;
+    margin-left: 5px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.card-header{
+    display: block;
+    margin-left: 0;
+}
+
+.movie-name{
+    color: white;
+    font-size: 20px;
+    margin-right: 10px;
+}
+.post-info{
+    margin-top: 30px;
+    display: block;
+    align-items: center;
+}
+
+.star{
+    color: yellow;
+}
+
+.mat-card-image{
+    height: 300px;
+}
+.review-info{
+    display: flex;
+    align-items: center;
+}
+.review{
+margin-top:20px ;}
+
+.edit-profile{
+    display: inline-flex;
+}
+.settings{
+    margin-left: 5px;
+}
+.edit-button{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+
+}
+.edit-button:hover, .edit-button:hover{
+    border: none;
+    color: lightgray;
+}
+.movies{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+.movie{
+  width: 280px;
+  margin: 10px;
+  height: 172px;
+  overflow: hidden;
+  border-radius: 5px;
+  background-color: black;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.movie:hover{
+  box-shadow: 2px 2px 30px 0px white;
+  transform: translateY(-3px);
+}
+
+.movie-thumb-container{
+  background-color: black;
+  position: relative;
+  color: #fff;
+  text-align: center;
+}
+
+.movie-thumbnail{
+  position:absolute;
+  top:0;
+  left:0;
+  right: 0;
+  margin: 0 auto;
+  height: 172px;
+}
+
+.movie-name{
+  color: #fff;
+  font-weight: 700;
+  font-size: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  bottom: 8px;
+  left: 16px;
+}

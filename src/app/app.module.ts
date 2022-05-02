@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
@@ -23,6 +23,11 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MovieDatailsComponent } from './components/movie-datails/movie-datails.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
 
 @NgModule({
   declarations: [
@@ -31,7 +36,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     LoginComponent,
     RegisterComponent,
     MovieDatailsComponent,
-    ProfileComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +54,12 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatSlideToggleModule,
     MatSelectModule,
     MatOptionModule,
+    MatTableModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,5 +6,102 @@ body {
   position: relative;
 }
 
+.search-box-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+}
+.search-box {
+  margin-top: 20px;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
 
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-option-img {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+[dir='rtl'] .example-option-img {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+.filters{
+  max-width: 1200px;
+  margin: 20px auto;
+  padding-left: 40px;
+
+}
+
+.movies{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+.movie{
+  width: 280px;
+  margin: 10px;
+  height: 330px;
+  overflow: hidden;
+  border-radius: 5px;
+  background-color: black;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+.movie:hover{
+  box-shadow: 2px 2px 30px 0px white;
+  transform: translateY(-3px);
+}
+
+.movie-thumb-container{
+  background-color: black;
+  position: relative;
+  height: 172px;
+  color: #fff;
+  text-align: center;
+}
+
+.movie-thumbnail{
+  position:absolute;
+  top:0;
+  left:0;
+  right: 0;
+  margin: 0 auto;
+  height: 172px;
+}
+.movie-description{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 157px;
+
+}
+.movie-name{
+  color: #fff;
+  font-weight: 700;
+  font-size: 22px;
+  white-space: nowrap;
+  margin-bottom:20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.platforms{
+  display: flex;
+}
+.movie-platforms{
+  width: 20px;
+  margin-right: 20px;
+  margin-bottom: 30px;
+}
