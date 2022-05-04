@@ -1,9 +1,13 @@
 body {
+  background-color: black;
   background-image: url("../../../assets/movie2.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
+  height: auto;
+  min-height: 100%;
+  
 }
 
 .search-box-container{
@@ -46,7 +50,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   max-width: 1200px;
-  margin: 20px auto;
+
 }
 .movie{
   width: 280px;
@@ -116,6 +120,4 @@ margin-top: 5px;
   margin-bottom: 5px;
   text-overflow: ellipsis;
   overflow: hidden;
-  
-
 }

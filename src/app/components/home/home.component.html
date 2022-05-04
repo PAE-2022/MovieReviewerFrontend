@@ -1,11 +1,10 @@
+<html>
 <body>
-
-
 <div class="movies">
     <div *ngFor = "let movie of movies" class="movie">
         <div class="movie-thumb-container">
             <img 
-            src="'{{movie.Poster}}'"
+            [src]="_DomSanitizationService.bypassSecurityTrustUrl(movie.Images[1])"
             alt=""
             class="movie-thumbnail">
         </div>

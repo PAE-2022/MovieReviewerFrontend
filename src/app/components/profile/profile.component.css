@@ -4,7 +4,8 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-
+    min-height: 100%;
+    height: auto;
 
 }
 
@@ -92,7 +93,6 @@ body {
 .movie-name{
     color: white;
     font-size: 20px;
-    margin-right: 10px;
 }
 .post-info{
     margin-top: 30px;
@@ -156,15 +156,9 @@ margin-top:20px ;}
   transform: translateY(-3px);
 }
 
-.movie-thumb-container{
-  background-color: black;
-  position: relative;
-  color: #fff;
-  text-align: center;
-}
+
 
 .movie-thumbnail{
-  position:absolute;
   top:0;
   left:0;
   right: 0;
@@ -181,4 +175,6 @@ margin-top:20px ;}
   overflow: hidden;
   bottom: 8px;
   left: 16px;
+  position: absolute;
+  margin-bottom: 5px;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from 'src/app/app.component';
-import moviesJson from '../../../movies.json'
+import { DomSanitizer } from '@angular/platform-browser';
+import moviesJson from '../../../movies.json';
 
 interface movie {
     Title:string; 
@@ -37,10 +37,10 @@ interface movie {
 
 export class HomeComponent {
   public movies: movie[] = moviesJson;
-  constructor() { 
+  constructor(public _DomSanitizationService: DomSanitizer) { 
 
   }
+ 
+ 
 
-
-  }
-
+}

@@ -113,7 +113,24 @@
                         </mat-tab>
                         <mat-tab label="Favorite Movies">
                             <div class="movies">
-   
+                                <div class="movies">
+                                    <div *ngFor = "let movie of movies" class="movie">
+                                        <div class="movie-description">
+                                           
+                                            <div class="movie-info">
+                                                <mat-icon class="like">favorite</mat-icon>
+                                                <p class="movie-name">{{movie.Title}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="movie-thumb-container">
+                                            <img 
+                                            [src]="_DomSanitizationService.bypassSecurityTrustUrl(movie.Images[1])"
+                                            alt=""
+                                            class="movie-thumbnail">
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </mat-tab>
                         <mat-tab label="Movies wish list">
