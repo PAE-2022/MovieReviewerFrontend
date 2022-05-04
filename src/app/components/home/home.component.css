@@ -70,6 +70,7 @@ body {
   height: 172px;
   color: #fff;
   text-align: center;
+  margin-bottom: -20px;
 }
 
 .movie-thumbnail{
@@ -81,27 +82,40 @@ body {
   height: 172px;
 }
 .movie-description{
-  padding: 20px;
+  padding-top: 2px;
+  padding-left: 20px;
+  padding-right: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   height: 157px;
 
 }
+
+.platforms{
+  display: flex;
+  margin-top: 15px;
+}
+.movie-platforms{
+  width: 20px;
+  margin-right: 20px;
+}
+
+.movie-info{
+color: white;
+font-size: 6px;
+margin-top: 5px;
+}
+
 .movie-name{
   color: #fff;
   font-weight: 700;
   font-size: 22px;
   white-space: nowrap;
-  margin-bottom:20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   text-overflow: ellipsis;
   overflow: hidden;
-}
-.platforms{
-  display: flex;
-}
-.movie-platforms{
-  width: 20px;
-  margin-right: 20px;
-  margin-bottom: 30px;
+  
+
 }

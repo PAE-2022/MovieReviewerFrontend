@@ -1,197 +1,37 @@
 <body>
-    <div class="search-box-container">
-        <form class="search-box">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Search a movie to review...</mat-label>
-              <input matInput aria-label="Movie" [matAutocomplete]="auto" [formControl]="movieCtrl">
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let movie of filterMovies | async" [value]="movie.name">
-                  <img class="example-option-img" aria-hidden [src]="movie.poster" height="25">
-                  <span>{{movie.name}}</span> |
-                  <small>Genre: {{movie.genre}}</small>
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-        </form>    
-    </div>
-<div class="filters">
-    <mat-form-field>
-        <mat-label>Sort</mat-label>
-            <mat-select
-                panelClass="sort-select"
-                [(ngModel)]="sort">
-                <mat-option>Name</mat-option>
-                <mat-option>Director</mat-option>
-                <mat-option>Year</mat-option>
-                <mat-option>Genre</mat-option>
-                <mat-option>Rating</mat-option>
-            </mat-select>
 
-    </mat-form-field>
-
-</div>
 
 <div class="movies">
-    <div class="movie">
+    <div *ngFor = "let movie of movies" class="movie">
         <div class="movie-thumb-container">
             <img 
-            src="https://images.indianexpress.com/2021/10/dune-movie-review-1200.jpg" 
+            src="'{{movie.Poster}}'"
             alt=""
             class="movie-thumbnail">
         </div>
         <div class="movie-description">
-            <p class="movie-name">Dune</p>
+            <div class="movie-info">
+                <p class="movie-name">{{movie.Title}}</p>
+                <p class="movie-plot">{{movie.Plot}}</p>
+                <p class="movie-year"><span>Year: </span>{{movie.Year}}</p>
+                <p class="movie-genres"><span>Genres: </span>{{movie.Genre}}</p>
+                <p class="movie-director"><span>Director: </span>{{movie.Director}}</p>
+            </div>
             <div class="platforms">
+                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
+                alt=""
+                class="movie-platforms">
+                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
+                alt=""
+                class="movie-platforms">
+                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
+                alt=""
+                class="movie-platforms">
                 <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
                 alt=""
                 class="movie-platforms">
             </div>
         </div>
     </div>
-    <div class="movie">
-        <div class="movie-thumb-container">
-            <img 
-            src="https://images.indianexpress.com/2021/10/dune-movie-review-1200.jpg" 
-            alt=""
-            class="movie-thumbnail">
-        </div>
-        <div class="movie-description">
-            <p class="movie-name">Dune</p>
-            <div class="platforms">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
-                alt=""
-                class="movie-platforms">
-            </div>
-        </div>
-    </div>
-    <div class="movie">
-        <div class="movie-thumb-container">
-            <img 
-            src="https://images.indianexpress.com/2021/10/dune-movie-review-1200.jpg" 
-            alt=""
-            class="movie-thumbnail">
-        </div>
-        <div class="movie-description">
-            <p class="movie-name">Dune</p>
-            <div class="platforms">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
-                alt=""
-                class="movie-platforms">
-            </div>
-        </div>
-    </div>
-    <div class="movie">
-        <div class="movie-thumb-container">
-            <img 
-            src="https://images.indianexpress.com/2021/10/dune-movie-review-1200.jpg" 
-            alt=""
-            class="movie-thumbnail">
-        </div>
-        <div class="movie-description">
-            <p class="movie-name">Dune</p>
-            <div class="platforms">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
-                alt=""
-                class="movie-platforms">
-            </div>
-        </div>
-    </div>
-    <div class="movie">
-        <div class="movie-thumb-container">
-            <img 
-            src="https://images.indianexpress.com/2021/10/dune-movie-review-1200.jpg" 
-            alt=""
-            class="movie-thumbnail">
-        </div>
-        <div class="movie-description">
-            <p class="movie-name">Dune</p>
-            <div class="platforms">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
-                alt=""
-                class="movie-platforms">
-            </div>
-        </div>
-    </div>
-    <div class="movie">
-        <div class="movie-thumb-container">
-            <img 
-            src="https://images.indianexpress.com/2021/10/dune-movie-review-1200.jpg" 
-            alt=""
-            class="movie-thumbnail">
-        </div>
-        <div class="movie-description">
-            <p class="movie-name">Dune</p>
-            <div class="platforms">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
-                alt=""
-                class="movie-platforms">
-            </div>
-        </div>
-    </div>
-    <div class="movie">
-        <div class="movie-thumb-container">
-            <img 
-            src="https://images.indianexpress.com/2021/10/dune-movie-review-1200.jpg" 
-            alt=""
-            class="movie-thumbnail">
-        </div>
-        <div class="movie-description">
-            <p class="movie-name">Dune</p>
-            <div class="platforms">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
-                alt=""
-                class="movie-platforms">
-            </div>
-        </div>
-    </div>
-    <div class="movie">
-        <div class="movie-thumb-container">
-            <img 
-            src="https://images.indianexpress.com/2021/10/dune-movie-review-1200.jpg" 
-            alt=""
-            class="movie-thumbnail">
-        </div>
-        <div class="movie-description">
-            <p class="movie-name">Dune</p>
-            <div class="platforms">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
-                alt=""
-                class="movie-platforms">
-            </div>
-        </div>
-    </div>
-    <div class="movie">
-        <div class="movie-thumb-container">
-            <img 
-            src="https://images.indianexpress.com/2021/10/dune-movie-review-1200.jpg" 
-            alt=""
-            class="movie-thumbnail">
-        </div>
-        <div class="movie-description">
-            <p class="movie-name">Dune</p>
-            <div class="platforms">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
-                alt=""
-                class="movie-platforms">
-            </div>
-        </div>
-    </div>
-    <div class="movie">
-        <div class="movie-thumb-container">
-            <img 
-            src="https://images.indianexpress.com/2021/10/dune-movie-review-1200.jpg" 
-            alt=""
-            class="movie-thumbnail">
-        </div>
-        <div class="movie-description">
-            <p class="movie-name">Dune</p>
-            <div class="platforms">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
-                alt=""
-                class="movie-platforms">
-            </div>
-        </div>
-    </div>
-
 </div>
 </body>
