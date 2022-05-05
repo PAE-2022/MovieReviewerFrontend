@@ -10,38 +10,54 @@
     <div class="student-profile py-4">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
+
+                <!---Profile card --->
+                <div class="col-lg-4 profile-info">
                     <div class="card shadow-sm">
                         <div class="card-header bg-transparent text-center">
-
                             <img class="profile_img"
                                 src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
                                 alt="student dp">
                             <div class="edit-profile">
-                            <h3>Nardibee</h3>
-                            <a class="edit-button"><mat-icon class="settings">edit</mat-icon></a>
+                                <h3>Nardibee</h3>
+                                <a class="edit-button"><mat-icon class="settings">edit</mat-icon></a>
                             </div>
                         </div>
+                        <!---User info 
                         <div class="card-body">
                             <p class="mb-0"><strong class="pr-1">Favorite Genre</strong>Drama</p>
                             <p class="mb-0"><strong class="pr-1">Favorite Movie</strong>The worst person in the world</p>
                             <p class="mb-0"><strong class="pr-1">Movies Reviewed</strong>65</p>
-                        </div>
+                        </div>--->
+                    </div>
+                    <div class="search-box-friends">
+                        <form class="example-form">
+                            <mat-form-field class="example-full-width " appearance="fill" color="warn">
+                              <mat-label>Add Friends</mat-label>
+                              <input matInput #message maxlength="256" placeholder="Search by email...">
+                            </mat-form-field>
+                          </form>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    
+
+
+
+
+                
+                <div class="col-lg-8">     
                     <div style="height: 26px"></div>
-                    <mat-tab-group dynamicHeight [backgroundColor]="'primary'">
+                    <mat-tab-group dynamicHeight [backgroundColor]="'warn'">
+
+
                         <mat-tab label="Reviews">
-                            <div class="review">
+                        <div class="reviews">
 
+                            <div class="review">
                                 <div class="review-info">
                                     <img class="profile_img"
                                     src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
                                     alt="student dp">
                                     <div class="movie-name">Nardibee reviewed  <strong>- Turning Red</strong></div>
-    
                                     <mat-icon class="star">star</mat-icon>
                                     <mat-icon class="star">star</mat-icon>
                                     <mat-icon class="star">star</mat-icon>
@@ -49,92 +65,44 @@
                                     <mat-icon class="star">star</mat-icon>
                                 </div>
                                 <mat-card class="example-card">
-                                    <div class="review-image">
                                         <img mat-card-image src="https://e00-us-marca.uecdn.es/assets/multimedia/imagenes/2022/03/25/16482324866811.jpg" alt="Photo of a Shiba Inu">
-                                    </div>
                                     <mat-card-content>
-                                      <p>
+                                      <p class="comment">
                                         "Like the best Pixars, you don’t need to have a kid to see it. It’s excellent entertainment for grown-up people, too."
                                       </p>
                                     </mat-card-content>
                                 </mat-card>
-                            </div>
-                            <div class="review">
+                            </div>    
 
-                                <div class="review-info">
-                                    <img class="profile_img"
-                                    src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
-                                    alt="student dp">
-                                    <div class="movie-name">Nardibee reviewed  <strong>- Turning Red</strong></div>
-    
-                                    <mat-icon class="star">star</mat-icon>
-                                    <mat-icon class="star">star</mat-icon>
-                                    <mat-icon class="star">star</mat-icon>
-                                    <mat-icon class="star">star</mat-icon>
-                                    <mat-icon class="star">star</mat-icon>
-                                </div>
-                                <mat-card class="example-card">
-                                    <div class="review-image">
-                                        <img mat-card-image src="https://e00-us-marca.uecdn.es/assets/multimedia/imagenes/2022/03/25/16482324866811.jpg" alt="Photo of a Shiba Inu">
-                                    </div>
-                                    <mat-card-content>
-                                      <p>
-                                        "Like the best Pixars, you don’t need to have a kid to see it. It’s excellent entertainment for grown-up people, too."
-                                      </p>
-                                    </mat-card-content>
-                                </mat-card>
-                            </div>        
-                            <div class="review">
-
-                                <div class="review-info">
-                                    <img class="profile_img"
-                                    src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
-                                    alt="student dp">
-                                    <div class="movie-name">Nardibee reviewed  <strong>- Turning Red</strong></div>
-    
-                                    <mat-icon class="star">star</mat-icon>
-                                    <mat-icon class="star">star</mat-icon>
-                                    <mat-icon class="star">star</mat-icon>
-                                    <mat-icon class="star">star</mat-icon>
-                                    <mat-icon class="star">star</mat-icon>
-                                </div>
-                                <mat-card class="example-card">
-                                    <div class="review-image">
-                                        <img mat-card-image src="https://e00-us-marca.uecdn.es/assets/multimedia/imagenes/2022/03/25/16482324866811.jpg" alt="Photo of a Shiba Inu">
-                                    </div>
-                                    <mat-card-content>
-                                      <p>
-                                        "Like the best Pixars, you don’t need to have a kid to see it. It’s excellent entertainment for grown-up people, too."
-                                      </p>
-                                    </mat-card-content>
-                                </mat-card>
-                            </div>                    
+                        </div>
+                            
 
                         </mat-tab>
                         <mat-tab label="Favorite Movies">
                             <div class="movies">
-                                <div class="movies">
-                                    <div *ngFor = "let movie of movies" class="movie">
-                                        <div class="movie-description">
-                                           
-                                            <div class="movie-info">
-                                                <mat-icon class="like">favorite</mat-icon>
-                                                <p class="movie-name">{{movie.Title}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="movie-thumb-container">
-                                            <img 
-                                            [src]="_DomSanitizationService.bypassSecurityTrustUrl(movie.Images[1])"
-                                            alt=""
-                                            class="movie-thumbnail">
-                                        </div>
-
-                                    </div>
+                                <div *ngFor = "let movie of movies" class="movie">
+                                    <button class= "like-btn" mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                                        <mat-icon>favorite</mat-icon>
+                                    </button>
+                                    <img 
+                                    [src]="_DomSanitizationService.bypassSecurityTrustUrl(movie.Poster)"
+                                    alt=""
+                                    class="movie-thumbnail">
                                 </div>
                             </div>
                         </mat-tab>
-                        <mat-tab label="Movies wish list">
-                            <div class="movies">
+                        <mat-tab label="Friends">
+                            <div class="friends">
+                                <div *ngFor = "let movie of movies" class="friend">
+                                    <a href=# class="bg-transparent text-center">
+                                        <img class="friend-img"
+                                            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
+                                            alt="student dp">
+                                        <div class="friend-name">
+                                            <p>Friend name</p>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </mat-tab>
                     </mat-tab-group>

@@ -1,36 +1,19 @@
 <html>
 <body>
+<div class="search-box">
+    <form class="example-form">
+        <mat-form-field class="example-full-width " appearance="fill" color="warn">
+          <mat-label>Movies</mat-label>
+          <input matInput #message maxlength="256" placeholder="Search for a movie...">
+        </mat-form-field>
+      </form>
+</div>
 <div class="movies">
     <div *ngFor = "let movie of movies" class="movie">
-        <div class="movie-thumb-container">
             <img 
-            [src]="_DomSanitizationService.bypassSecurityTrustUrl(movie.Images[1])"
+            [src]="_DomSanitizationService.bypassSecurityTrustUrl(movie.Poster)"
             alt=""
             class="movie-thumbnail">
-        </div>
-        <div class="movie-description">
-            <div class="movie-info">
-                <p class="movie-name">{{movie.Title}}</p>
-                <p class="movie-plot">{{movie.Plot}}</p>
-                <p class="movie-year"><span>Year: </span>{{movie.Year}}</p>
-                <p class="movie-genres"><span>Genres: </span>{{movie.Genre}}</p>
-                <p class="movie-director"><span>Director: </span>{{movie.Director}}</p>
-            </div>
-            <div class="platforms">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
-                alt=""
-                class="movie-platforms">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
-                alt=""
-                class="movie-platforms">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
-                alt=""
-                class="movie-platforms">
-                <img src="https://cdn.iconscout.com/icon/free/png-256/netflix-3628944-3030169.png" 
-                alt=""
-                class="movie-platforms">
-            </div>
-        </div>
     </div>
 </div>
 </body>
