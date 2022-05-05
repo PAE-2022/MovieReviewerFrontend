@@ -7,6 +7,11 @@ body {
   position: relative;
   height: auto;
   min-height: 100%;
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   
 }
 
@@ -46,11 +51,12 @@ body {
 }
 
 .movies{
+  align-self: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   max-width: 1200px;
-
 }
 .movie{
   width: 280px;
