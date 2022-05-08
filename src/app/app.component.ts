@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
 
 
 @Component({
@@ -8,16 +9,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Movie Reviewer';
-  public isAuthenticated = true;
-
-  constructor(){
-
-  }
-  //MOVIES
-
-
+  constructor(private readonly authService: AuthService) { }
+  
   public logout(): void {
-    
-  } 
+    this.authService.logout();
+  }
+
+  public get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
 }
 

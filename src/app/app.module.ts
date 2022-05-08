@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { forwardRef, NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,9 +26,18 @@ import { ProfileComponent } from './components/profile/profile.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiModule } from './api/api.module';
-import {MatDividerModule} from '@angular/material/divider'; 
+import {MatDividerModule} from '@angular/material/divider';
+import { ApiTokenInterceptor } from './token.interceptor';
+
+
+export const API_INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  useExisting: forwardRef(() => ApiTokenInterceptor),
+  multi: true
+};
+
 
 
 @NgModule({
@@ -66,7 +75,10 @@ import {MatDividerModule} from '@angular/material/divider';
     ApiModule.forRoot({ rootUrl: 'http://localhost:3000' }),
     MatDividerModule,
   ],
-  providers: [],
+  providers: [
+    ApiTokenInterceptor,
+    API_INTERCEPTOR_PROVIDER
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

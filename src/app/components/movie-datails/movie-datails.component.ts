@@ -12,7 +12,7 @@ export class MovieDatailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,readonly moviesService: MoviesService) { }
   id: string | any;
-  movie !:  Movie;
+  movie: Movie | undefined;
 
   ngOnInit(): void {
     this.route.params.subscribe( params =>

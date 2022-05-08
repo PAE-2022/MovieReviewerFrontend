@@ -7,21 +7,21 @@
 
 <body>
 
-    <div class="student-profile py-4">
+    <div class="student-profile py-4" *ngIf="movie">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card shadow-sm">
                         <div class="card-header bg-transparent text-center">
                             <img class="profile_img"
-                                src="https://images-na.ssl-images-amazon.com/images/S/pv-target-images/2629bad87568290e63a1f62e81fd2d9bf3703268cdbc6ff38a02a6c5de0f0e29._RI_V_TTW_.jpg"
+                                [src]="movie.cover"
                                 alt="student dp">
                             <h3>{{movie.name}}</h3>
                         </div>
                         <div class="card-body">
                             <p class="mb-0"><strong class="pr-1">IMDb</strong>8.4/10</p>
                             <p class="mb-0"><strong class="pr-1">Rotten Tomatoes</strong>85%</p>
-                            <p class="mb-0"><strong class="pr-1">Users Raiting</strong>9.5</p>
+                            <p class="mb-0"><strong class="pr-1">Users Raiting</strong>{{movie.score}}</p>
                         </div>
                     </div>
                 </div>
@@ -35,12 +35,12 @@
                                 <tr>
                                     <th width="30%">Genre</th>
                                     <td width="2%">:</td>
-                                    <td>Action, Adventure, Sci-Fi</td>
+                                    <td>{{ movie.genres!.join(', ') }}</td>
                                 </tr>
                                 <tr>
                                     <th width="30%">Release date</th>
                                     <td width="2%">:</td>
-                                    <td>April 27, 2018</td>
+                                    <td>{{ movie.releaseDate | date }}</td>
                                 </tr>
                                 <tr>
                                     <th width="30%">Distributed by</th>
@@ -50,7 +50,7 @@
                                 <tr>
                                     <th width="30%">Directors</th>
                                     <td width="2%">:</td>
-                                    <td>Anthony Russo, Joe Russo</td>
+                                    <td></td>
                                 </tr>
                             </table>
                         </div>
@@ -61,18 +61,7 @@
                             <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Other Information</h3>
                         </div>
                         <div class="card-body pt-0">
-                            <p>As the Avengers and their allies have continued to protect the world from threats too
-                                large
-                                for any one
-                                hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of
-                                intergalactic
-                                infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power,
-                                and
-                                use them to
-                                inflict his twisted will on all of reality. Everything the Avengers have fought for has
-                                led
-                                up to this
-                                moment, the fate of Earth and existence has never been more uncertain.</p>
+                            <p> {{ movie.synopsis }} </p>
                         </div>
                     </div>
                 </div>
