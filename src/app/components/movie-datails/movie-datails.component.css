@@ -1,22 +1,15 @@
 body {
-    background-image: url("https://images4.alphacoders.com/909/thumb-1920-909185.jpg");
+    background-image: url("../../../assets/movie2.jpg");
     background-position:center;
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
 }
 
-.student-profile .card {
-  border-radius: 10px;
-}
 
-.student-profile .card .card-header .profile_img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  margin: 10px auto;
-  border: 10px solid #ccc;
-  border-radius: 50%;
+ .movie_img {
+object-fit: contain;
+margin: -1px;
 }
 
 .student-profile .card h3 {
@@ -34,4 +27,17 @@ body {
   font-size: 14px;
   padding: 5px 10px;
   color: #000;
+}
+.like-btn{
+  position: absolute;
+  align-self:  flex-end;
+  margin-top: 8px;
+  margin-right: 8px;
+}
+
+.like-btn:hover{
+  color: gray;
+}
+.like-btn:focus{
+ outline: white;
 }
