@@ -9,11 +9,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent,
   },
   {
-    path: '',
+    path: 'login',
     component: LoginComponent
   },
   {

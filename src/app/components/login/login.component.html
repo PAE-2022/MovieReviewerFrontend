@@ -2,35 +2,28 @@
 
     <mat-card>
         <mat-card-content>
-            <form>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
                 <h1>Movie Reviewer</h1>
                 <!--mat-error>
                 The username and password were not recognized
             </mat-error-->
                 <mat-form-field>
-                    <input matInput placeholder="Email" name="username" required>
+                    <input matInput placeholder="Email" name="username" required formControlName="email">
                     <mat-error>
                         Please provide a valid email address
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput type="password" placeholder="Password" name="password" required>
+                    <input matInput type="password" placeholder="Password" name="password" required formControlName="password">
                     <mat-error>
                         Please provide a valid password
                     </mat-error>
                 </mat-form-field>
-                <button mat-raised-button>login</button>
+                <button type="submit" mat-raised-button>Login</button>
             </form>
-            <p>---------------------------------------------------------------------------</p>
-            <h2>or continue with</h2>
-            <button mat-button>
-                <mat-icon>facebook</mat-icon>
-                Facebook
-            </button>
-            <button mat-button>
-                <mat-icon>apple</mat-icon>
-                Apple ID
-            </button>
+            <mat-divider></mat-divider>
+            <h2>Or</h2>
+            <button type="button" mat-button routerLink="/register">Sign Up</button>
         </mat-card-content>
     </mat-card>
 

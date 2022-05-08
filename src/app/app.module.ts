@@ -28,6 +28,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiModule } from './api/api.module';
+import {MatDividerModule} from '@angular/material/divider'; 
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { ApiModule } from './api/api.module';
     ReactiveFormsModule,
     HttpClientModule,
     ApiModule.forRoot({ rootUrl: 'http://localhost:3000' }),
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
