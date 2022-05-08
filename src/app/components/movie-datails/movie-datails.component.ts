@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
-import { MoviesService } from 'src/app/services/movies.service';
-import { IMovie } from 'src/app/services/movies.service';
+import { MoviesService } from 'src/app/api/services';
+import { Movie } from 'src/app/api/models';
+
 @Component({
   selector: 'app-movie-datails',
   templateUrl: './movie-datails.component.html',
@@ -11,7 +12,8 @@ export class MovieDatailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,readonly moviesService: MoviesService) { }
   id: string | any;
-  movie!: IMovie;
+  movie !:  Movie;
+
   ngOnInit(): void {
     this.route.params.subscribe( params =>
         this.id = params['id']
@@ -19,8 +21,10 @@ export class MovieDatailsComponent implements OnInit {
     this.getMovieById();
   }
   getMovieById(){
-    this.moviesService.getMovieById(this.id).subscribe(movie =>{
+    this.moviesService.apiMoviesIdGet({
+      id: this.id,
+    }).subscribe((movie) => {
       this.movie = movie;
-    })
+    });
   }
 }

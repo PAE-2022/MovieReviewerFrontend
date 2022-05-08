@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviesService } from 'src/app/services/movies.service';
-
+import { MoviesService } from 'src/app/api/services';
+import { Movie } from 'src/app/api/models';
 
 
 
@@ -13,7 +13,7 @@ import { MoviesService } from 'src/app/services/movies.service';
 
 
 export class HomeComponent {
-  movies : any = [];
+  movies: Movie[] = [];
   constructor(readonly moviesService: MoviesService ) { 
 
   }
@@ -21,9 +21,8 @@ export class HomeComponent {
     this.getAllMovies();
   }
   getAllMovies(){
-    this.moviesService.getAllMovies().subscribe(movies =>{
+    this.moviesService.apiMoviesGet().subscribe((movies) =>{
       this.movies = movies;
-    })
+    });
   }
-
 }

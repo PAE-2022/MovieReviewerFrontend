@@ -62,7 +62,7 @@ import { ApiModule } from './api/api.module';
     MatAutocompleteModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ApiModule.forRoot({ rootUrl: 'http://localhost:3000/' }),
+    ApiModule.forRoot({ rootUrl: 'http://localhost:3000' }),
   ],
   providers: [],
   bootstrap: [AppComponent]

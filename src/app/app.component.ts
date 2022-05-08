@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MoviesService } from './services/movies.service';
 
 
 @Component({
@@ -9,7 +8,7 @@ import { MoviesService } from './services/movies.service';
 })
 export class AppComponent {
   title = 'Movie Reviewer';
-  public isAuthenticated = false;
+  public isAuthenticated = true;
 
   constructor(){
 

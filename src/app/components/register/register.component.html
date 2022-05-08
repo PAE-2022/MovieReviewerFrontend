@@ -1,19 +1,31 @@
 <body>
     <mat-card>
         <mat-card-content>
-            <form>
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmitForm()">
                 <h1>Movie Reviewer</h1>
                 <!--mat-error>
                 The username and password were not recognized
             </mat-error-->
                 <mat-form-field>
-                    <input matInput placeholder="Email" name="username" required>
+                    <input matInput placeholder="Email" name="email" required formControlName="email">
                     <mat-error>
                         Please provide a valid email address
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput type="password" placeholder="Password" name="password" required>
+                    <input matInput placeholder="Name" name="name" required formControlName="name">
+                    <mat-error>
+                        Please provide a name
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="date" placeholder="Date of birth" name="dateOfBirth" required formControlName="dateOfBirth">
+                    <mat-error>
+                        Please provide your birth date
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="password" placeholder="Password" name="password" required formControlName="password">
                     <mat-error>
                         Please provide a valid password
                     </mat-error>
