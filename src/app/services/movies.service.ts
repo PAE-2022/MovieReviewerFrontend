@@ -10,7 +10,7 @@ export interface IMovieReviewScore {
   score: number;
   user: string;
 }
-export interface Movie {
+export interface IMovie {
   name: string;
   cover: string;
   synopsis: string;
@@ -41,11 +41,11 @@ export class MoviesService {
   constructor(private http: HttpClient) { }
   
   getAllMovies(){
-    return this.http.get< Movie[] | {} >(`${this.URL}`)
+    return this.http.get< IMovie[] | {} >(`${this.URL}`)
   }
 
   getMovieById(id:string){
-    this.http.get< Movie | {} >(`${this.URL}` + id )
+    return this.http.get< IMovie>(`${this.URL}` + id )
   }
 
 
