@@ -27,6 +27,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { HttpClientModule } from '@angular/common/http';
+import { ApiModule } from './api/api.module';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ApiModule.forRoot({ rootUrl: 'http://localhost:3000/' }),
   ],
   providers: [],
   bootstrap: [AppComponent]
