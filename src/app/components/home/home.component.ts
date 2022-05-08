@@ -1,30 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import moviesJson from '../../../movies.json';
+import { MoviesService } from 'src/app/services/movies.service';
 
-interface movie {
-    Title:string; 
-    Year:string; 
-    Rated:string;
-    Released:string; 
-    Runtime:string;
-    Genre:string;
-    Director:string;
-    Writer:string;
-    Actors:string; 
-    Plot:string;
-    Language:string;
-    Country:string; 
-    Awards:string; 
-    Poster:string; 
-    Metascore:string; 
-    imdbRating:string; 
-    imdbVotes:string
-    imdbID:string;
-    Type:string; 
-    Response:string; 
-    Images:Array<string>; 
-  }
+
 
 
 @Component({
@@ -36,11 +13,17 @@ interface movie {
 
 
 export class HomeComponent {
-  public movies: movie[] = moviesJson;
-  constructor(public _DomSanitizationService: DomSanitizer) { 
+  movies : any = [];
+  constructor(readonly moviesService: MoviesService ) { 
 
   }
- 
- 
+  ngOnInit(){
+    this.getAllMovies();
+  }
+  getAllMovies(){
+    this.moviesService.getAllMovies().subscribe(movies =>{
+      this.movies = movies;
+    })
+  }
 
 }

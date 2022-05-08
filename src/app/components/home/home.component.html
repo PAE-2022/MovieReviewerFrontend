@@ -1,4 +1,3 @@
-<html>
 <body>
 <div class="search-box">
     <form class="example-form">
@@ -9,9 +8,9 @@
       </form>
 </div>
 <div class="movies">
-    <div *ngFor = "let movie of movies" class="movie">
+    <div *ngFor = "let movie of movies" [routerLink]="['/details', movie._id]"  class="movie">
             <img 
-            [src]="_DomSanitizationService.bypassSecurityTrustUrl(movie.Poster)"
+            src={{movie.cover}}
             alt=""
             class="movie-thumbnail">
     </div>

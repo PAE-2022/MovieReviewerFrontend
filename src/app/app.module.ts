@@ -26,7 +26,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -59,7 +59,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatFormFieldModule,
     MatCardModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

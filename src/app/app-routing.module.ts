@@ -21,7 +21,7 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'details',
+    path: 'details/:id',
     component: MovieDatailsComponent
   },
   {
