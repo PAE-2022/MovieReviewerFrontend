@@ -39,10 +39,16 @@ export class MoviesService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiMoviesGet$Response(params?: {
+
+    /**
+     * query
+     */
+    query?: string;
   }): Observable<StrictHttpResponse<Array<Movie>>> {
 
     const rb = new RequestBuilder(this.rootUrl, MoviesService.ApiMoviesGetPath, 'get');
     if (params) {
+      rb.query('query', params.query, {});
     }
 
     return this.http.request(rb.build({
@@ -65,6 +71,11 @@ export class MoviesService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiMoviesGet(params?: {
+
+    /**
+     * query
+     */
+    query?: string;
   }): Observable<Array<Movie>> {
 
     return this.apiMoviesGet$Response(params).pipe(

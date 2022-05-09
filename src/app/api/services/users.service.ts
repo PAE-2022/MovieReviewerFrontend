@@ -26,6 +26,64 @@ export class UsersService extends BaseService {
   }
 
   /**
+   * Path part for operation apiUsersSearchGet
+   */
+  static readonly ApiUsersSearchGetPath = '/api/users/search';
+
+  /**
+   * Get user by id
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUsersSearchGet()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUsersSearchGet$Response(params: {
+
+    /**
+     * query to search
+     */
+    query: string;
+  }): Observable<StrictHttpResponse<Array<User>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UsersService.ApiUsersSearchGetPath, 'get');
+    if (params) {
+      rb.query('query', params.query, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<User>>;
+      })
+    );
+  }
+
+  /**
+   * Get user by id
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `apiUsersSearchGet$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUsersSearchGet(params: {
+
+    /**
+     * query to search
+     */
+    query: string;
+  }): Observable<Array<User>> {
+
+    return this.apiUsersSearchGet$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<User>>) => r.body as Array<User>)
+    );
+  }
+
+  /**
    * Path part for operation apiUsersIdGet
    */
   static readonly ApiUsersIdGetPath = '/api/users/{id}';
