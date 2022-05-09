@@ -20,7 +20,7 @@
                                 alt="student dp">
                             <div class="edit-profile">
                                 <h3>{{ profileUser.name }}</h3>
-                                <a class="edit-button"><mat-icon class="settings">edit</mat-icon></a>
+                                <a class="edit-button" *ngIf="myProfile"><mat-icon class="settings">edit</mat-icon></a>
                             </div>
                         </div>
                         <!---User info 
@@ -80,8 +80,8 @@
                         </mat-tab>
                         <mat-tab label="Favorite Movies">
                             <div class="movies">
-                                <div *ngFor = "let movie of profileUser.favorites" class="movie" >
-                                    <button class= "like-btn" mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                                <div *ngFor = "let movie of profileUser.favorites"  [routerLink]="['/details', movie._id]" class="movie" >
+                                    <button class= "like-btn" mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)="onRemoveFromFavorites(movie._id)" >
                                         <mat-icon>favorite</mat-icon>
                                     </button>
                                     <img 
