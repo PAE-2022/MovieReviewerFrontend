@@ -80,14 +80,14 @@
                         </mat-tab>
                         <mat-tab label="Favorite Movies">
                             <div class="movies">
-                                <div *ngFor = "let movie of profileUser.favorites"  [routerLink]="['/details', movie._id]" class="movie" >
+                                <div *ngFor = "let movie of profileUser.favorites"   class="movie" >
                                     <button class= "like-btn" mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)="onRemoveFromFavorites(movie._id)" >
                                         <mat-icon>favorite</mat-icon>
                                     </button>
                                     <img 
                                     [src]="movie.cover | safe"
                                     alt=""
-                                    class="movie-thumbnail" *ngIf="movie.cover">
+                                    class="movie-thumbnail" *ngIf="movie.cover" [routerLink]="['/details', movie._id]">
                                 </div>
                             </div>
                         </mat-tab>
