@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
 import { UsersService } from 'src/app/api/services';
 import { AuthService } from 'src/app/auth.service';
 
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
       next: (response) => {
         this.authService.setToken(response.token!);
         alert('Login successful');
+        
       },
       error: (error) => {
         if (error.error.errors) {

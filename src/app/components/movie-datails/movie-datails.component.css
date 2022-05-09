@@ -1,9 +1,17 @@
 body {
-    background-image: url("../../../assets/movie2.jpg");
-    background-position:center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
+  background-color: black;
+  background-image: url("../../../assets/movie2.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  height: auto;
+  min-height: 100%;
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -40,4 +48,8 @@ margin: -1px;
 }
 .like-btn:focus{
  outline: white;
+}
+
+.user {
+  color: darkred;
 }

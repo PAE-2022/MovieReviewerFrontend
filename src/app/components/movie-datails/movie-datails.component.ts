@@ -36,4 +36,12 @@ export class MovieDatailsComponent implements OnInit {
   sanitizeUrl(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
+
+  getComments(movie: Movie): string[] {
+    return movie.comments!.map((comment) => comment.content!);
+  }
+
+  postComment() {
+    
+  }
 }
