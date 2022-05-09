@@ -25,7 +25,7 @@ const routes: Routes = [
     component: MovieDatailsComponent
   },
   {
-    path: 'profile',
+    path: 'profile/:id',
     component: ProfileComponent
   }
 ]; 
