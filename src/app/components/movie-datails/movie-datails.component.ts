@@ -75,17 +75,11 @@ export class MovieDatailsComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
-<<<<<<< HEAD
   getComments(movie: Movie): string[] {
     return movie.comments!.map((comment) => comment.content!);
   }
 
   postComment() {
-    
+    //this.moviesService.apiMoviesIdCommentPost()
   }
-=======
-
-
-
->>>>>>> e21aaab084229b82add3fa642068a3398bb1a8ed
 }

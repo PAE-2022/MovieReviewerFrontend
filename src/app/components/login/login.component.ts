@@ -4,7 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { UsersService } from 'src/app/api/services';
 import { AuthService } from 'src/app/auth.service';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { Router } from '@angular/router';
+//import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -43,12 +43,8 @@ export class LoginComponent implements OnInit {
     }).subscribe({
       next: (response) => {
         this.authService.setToken(response.token!);
-<<<<<<< HEAD
         alert('Login successful');
-        
-=======
         this.navigate();
->>>>>>> e21aaab084229b82add3fa642068a3398bb1a8ed
       },
       error: (error) => {
         if (error.error.errors) {
