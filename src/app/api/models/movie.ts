@@ -48,7 +48,7 @@ export interface Movie {
   /**
    * Movie screen writers
    */
-  screenWriters?: Array<string>;
+  screenwriters?: Array<string>;
 
   /**
    * Movie synopsis

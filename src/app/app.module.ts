@@ -30,6 +30,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiModule } from './api/api.module';
 import {MatDividerModule} from '@angular/material/divider';
 import { ApiTokenInterceptor } from './token.interceptor';
+import { SafePipe } from './safe.pipe';
 
 
 export const API_INTERCEPTOR_PROVIDER: Provider = {
@@ -47,7 +48,8 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     LoginComponent,
     RegisterComponent,
     MovieDatailsComponent,
-    ProfileComponent
+    ProfileComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

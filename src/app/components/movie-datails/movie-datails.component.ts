@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { MoviesService } from 'src/app/api/services';
 import { Movie } from 'src/app/api/models';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movie-datails',
@@ -10,7 +11,7 @@ import { Movie } from 'src/app/api/models';
 })
 export class MovieDatailsComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,readonly moviesService: MoviesService) { }
+  constructor(private route: ActivatedRoute,readonly moviesService: MoviesService, protected sanitizer: DomSanitizer) { }
   id: string | any;
   movie: Movie | undefined;
 
@@ -26,5 +27,13 @@ export class MovieDatailsComponent implements OnInit {
     }).subscribe((movie) => {
       this.movie = movie;
     });
+  }
+
+  moviePlatform(movie: Movie): string[] {
+    return movie.platforms!.map((platform) => platform.name!);
+  }
+
+  sanitizeUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
