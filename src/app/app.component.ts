@@ -9,8 +9,11 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'Movie Reviewer';
+  userId:string | any;
   constructor(private readonly authService: AuthService) { }
-  
+  ngOnInit(): void {
+    this.getUserId();
+  }
   public logout(): void {
     this.authService.logout();
   }
@@ -19,5 +22,8 @@ export class AppComponent {
     return this.authService.isLoggedIn();
   }
 
+  getUserId(){
+    this.userId = this.authService.getUserId()
+  }
 }
 
