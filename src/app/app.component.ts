@@ -13,8 +13,6 @@ export class AppComponent {
   constructor(private readonly authService: AuthService) { }
   ngOnInit(): void {
     this.getUserId();
-
-
   }
   public logout(): void {
     this.authService.logout();

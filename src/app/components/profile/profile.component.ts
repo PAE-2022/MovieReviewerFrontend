@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/auth.service';
 import {  UsersService } from 'src/app/api/services';
 import { Movie, User } from 'src/app/api/models';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -11,15 +12,19 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  profileId:string | any;
+  profileUser: User | undefined;
   userId:string | any;
   user: User | undefined;
-  
 
-  constructor(private readonly authService:AuthService, private readonly userService:UsersService, protected sanitizer: DomSanitizer) { }
+  constructor(private route: ActivatedRoute, private readonly authService:AuthService, private readonly userService:UsersService, protected sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe( params =>
+      this.profileId = params['id']
+  )
     this.getUserId();
-
+    this.getProfileUser();
 
   }
   getUserId(){
@@ -30,6 +35,14 @@ export class ProfileComponent implements OnInit {
       this.user = user;
     });
   }
+  getProfileUser(){
+    this.userService.apiUsersIdGet({
+      id:this.profileId,
+    }).subscribe((user)=>{
+      this.profileUser = user;
+    });
+  }
+
   sanitizeUrl(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }

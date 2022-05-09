@@ -12,10 +12,16 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card shadow-sm">
-                        <button class="like-btn" mat-fab color="warn" (click)="onAddToFavorites(id)" 
-                            aria-label="Example icon-button with a heart icon" *ngIf="id">
+
+                            <button class="like-btn" mat-fab color="warn" (click)="onAddToFavorites(id)" 
+                            aria-label="Example icon-button with a heart icon" *ngIf="id && isFavorite">
                             <mat-icon>favorite</mat-icon>
-                        </button >
+                            </button>
+                            <button class="like-btn" mat-fab color="primary" (click)="onAddToFavorites(id)" 
+                            aria-label="Example icon-button with a heart icon" *ngIf="id && !isFavorite">
+                            <mat-icon>favorite</mat-icon>
+                            </button>
+
                         <img class="movie_img" [alt]="movie.name" [src]="movie.cover">
                         <div class="card-body">
                             <h3>{{movie.name}}</h3>

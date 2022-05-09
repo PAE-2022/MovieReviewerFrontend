@@ -7,19 +7,19 @@
 
 <body>
 
-    <div class="student-profile py-4" *ngIf="user">
+    <div class="student-profile py-4" *ngIf="profileUser">
         <div class="container">
             <div class="row">
 
                 <!---Profile card --->
                 <div class="col-lg-4 profile-info">
                     <div class="card shadow-sm">
-                        <div class="card-header bg-transparent text-center" *ngIf="user.avatar">
+                        <div class="card-header bg-transparent text-center" *ngIf="profileUser.avatar">
                             <img class="profile_img"
-                            [src]="user.avatar | safe"
+                            [src]="profileUser.avatar | safe"
                                 alt="student dp">
                             <div class="edit-profile">
-                                <h3>{{ user.name }}</h3>
+                                <h3>{{ profileUser.name }}</h3>
                                 <a class="edit-button"><mat-icon class="settings">edit</mat-icon></a>
                             </div>
                         </div>
@@ -55,9 +55,9 @@
                             <div class="review">
                                 <div class="review-info">
                                     <img class="profile_img"
-                                    [src]="user.avatar | safe"
-                                    alt="student dp" *ngIf="user.avatar">
-                                    <div class="movie-name">{{user.name}} <strong>- Turning Red</strong></div>
+                                    [src]="profileUser.avatar | safe"
+                                    alt="student dp" *ngIf="profileUser.avatar">
+                                    <div class="movie-name">{{profileUser.name}} <strong>- Turning Red</strong></div>
                                     <mat-icon class="star">star</mat-icon>
                                     <mat-icon class="star">star</mat-icon>
                                     <mat-icon class="star">star</mat-icon>
@@ -80,7 +80,7 @@
                         </mat-tab>
                         <mat-tab label="Favorite Movies">
                             <div class="movies">
-                                <div *ngFor = "let movie of user.favorites" class="movie" >
+                                <div *ngFor = "let movie of profileUser.favorites" class="movie" >
                                     <button class= "like-btn" mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
                                         <mat-icon>favorite</mat-icon>
                                     </button>
@@ -93,8 +93,8 @@
                         </mat-tab>
                         <mat-tab label="Friends">
                             <div class="friends">
-                                <div *ngFor = "let friend of user.following" class="friend">
-                                    <a href='/profile' class="bg-transparent text-center">
+                                <div *ngFor = "let friend of profileUser.following" class="friend">
+                                    <a href="/profile/{{friend._id}}" class="bg-transparent text-center">
                                         <img class="friend-img"
                                             [src]="friend.avatar | safe"
                                             alt="friend.name"  *ngIf="friend.avatar">

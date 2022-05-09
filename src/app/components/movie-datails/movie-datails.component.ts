@@ -17,6 +17,7 @@ export class MovieDatailsComponent implements OnInit {
   movie: Movie | undefined;
   userId:string | any;
   user: User | undefined;
+  isFavorite!: boolean;
   constructor(private route: ActivatedRoute,readonly moviesService: MoviesService, protected sanitizer: DomSanitizer,private readonly authService:AuthService,private readonly userService:UsersService) { }
 
 
@@ -26,6 +27,7 @@ export class MovieDatailsComponent implements OnInit {
     )
     this.getMovieById();
     this.getUserId();
+    this.isFavorite=false;
   }
   getMovieById(){
     this.moviesService.apiMoviesIdGet({
@@ -53,8 +55,17 @@ export class MovieDatailsComponent implements OnInit {
     const data:AddToFavoritesDto = {};
     data.movieId = id;
     this.addToFavorites(data);
+    this.isFavorite=true;
   }
 
+  private removeFromFavorites(id:string){
+    this.userService.apiUsersFavoritesIdDelete({id:id}).subscribe(()=>{
+    });
+  }
+  onRemoveFromFavorites(id:string) {
+    const movieId:string =  id;
+    this.removeFromFavorites(movieId);
+  }
 
   moviePlatform(movie: Movie): string[] {
     return movie.platforms!.map((platform) => platform.name!);
