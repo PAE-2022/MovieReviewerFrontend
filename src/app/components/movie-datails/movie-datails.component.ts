@@ -16,8 +16,9 @@ export class MovieDatailsComponent implements OnInit {
   id: string | any;
   movie: Movie | undefined;
   userId:string | any;
-  user: User | undefined;
+  user!: User;
   isFavorite!: boolean;
+  favMovies: Movie []|undefined;
   constructor(private route: ActivatedRoute,readonly moviesService: MoviesService, protected sanitizer: DomSanitizer,private readonly authService:AuthService,private readonly userService:UsersService) { }
 
 
@@ -27,14 +28,7 @@ export class MovieDatailsComponent implements OnInit {
     )
     this.getMovieById();
     this.getUserId();
-    this.isFavorite=false;
-  }
-  getMovieById(){
-    this.moviesService.apiMoviesIdGet({
-      id: this.id,
-    }).subscribe((movie) => {
-      this.movie = movie;
-    });
+    this.toggleIsFavorite()
   }
 
   getUserId(){
@@ -43,9 +37,19 @@ export class MovieDatailsComponent implements OnInit {
       id:this.userId,
     }).subscribe((user)=>{
       this.user = user;
+  
     });
   }
 
+  //get movie 
+  getMovieById(){
+    this.moviesService.apiMoviesIdGet({
+      id: this.id,
+    }).subscribe((movie) => {
+      this.movie = movie;
+    });
+  }
+  //add and remove this movie to favorites 
   private addToFavorites(data:AddToFavoritesDto){
     this.userService.apiUsersFavoritesPost({body:data}).subscribe(()=>{
       
@@ -55,7 +59,7 @@ export class MovieDatailsComponent implements OnInit {
     const data:AddToFavoritesDto = {};
     data.movieId = id;
     this.addToFavorites(data);
-    this.isFavorite=true;
+    this.toggleIsFavorite();
   }
 
   private removeFromFavorites(id:string){
@@ -65,8 +69,25 @@ export class MovieDatailsComponent implements OnInit {
   onRemoveFromFavorites(id:string) {
     const movieId:string =  id;
     this.removeFromFavorites(movieId);
+    this.toggleIsFavorite();
   }
 
+  toggleIsFavorite(){
+      this.favMovies = this.user.favorites;
+      console.log(this.favMovies);
+      if(this.favMovies){
+      this.favMovies.some((el) =>{
+        if (el._id ===this.id){
+          this.isFavorite=true;
+        }
+        else{
+          this.isFavorite=false;
+        }
+      }
+      )
+
+  }
+  console.log(this.isFavorite);}
   moviePlatform(movie: Movie): string[] {
     return movie.platforms!.map((platform) => platform.name!);
   }

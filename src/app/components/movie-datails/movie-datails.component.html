@@ -13,11 +13,11 @@
                 <div class="col-lg-4">
                     <div class="card shadow-sm">
 
-                            <button class="like-btn" mat-fab color="warn" (click)="onAddToFavorites(id)" 
+                            <button class="like-btn" mat-fab color="disabled" (click)="onRemoveFromFavorites(id)" 
                             aria-label="Example icon-button with a heart icon" *ngIf="id && isFavorite">
-                            <mat-icon>favorite</mat-icon>
+                            <mat-icon>cancel</mat-icon>
                             </button>
-                            <button class="like-btn" mat-fab color="primary" (click)="onAddToFavorites(id)" 
+                            <button class="like-btn" mat-fab color="warn" (click)="onAddToFavorites(id)" 
                             aria-label="Example icon-button with a heart icon" *ngIf="id && !isFavorite">
                             <mat-icon>favorite</mat-icon>
                             </button>

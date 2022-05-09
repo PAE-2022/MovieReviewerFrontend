@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   profileUser: User | undefined;
   userId:string | any;
   user: User | undefined;
+  myProfile!:boolean;
 
   constructor(private route: ActivatedRoute, private readonly authService:AuthService, private readonly userService:UsersService, protected sanitizer: DomSanitizer) { }
 
@@ -25,6 +26,11 @@ export class ProfileComponent implements OnInit {
   )
     this.getUserId();
     this.getProfileUser();
+    if(this.profileId === this.userId){
+      this.myProfile=true
+    }else{
+      false;
+    }
 
   }
   getUserId(){
@@ -46,6 +52,15 @@ export class ProfileComponent implements OnInit {
   sanitizeUrl(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
+  private removeFromFavorites(id:string){
+    this.userService.apiUsersFavoritesIdDelete({id:id}).subscribe(()=>{
+    });
+  }
+  onRemoveFromFavorites(id:string | undefined) {
+    if(id!=undefined){
+      this.removeFromFavorites(id);
+    }
 
+  }
 
 }
