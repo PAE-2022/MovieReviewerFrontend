@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/api/services';
 import { AuthService } from 'src/app/auth.service';
-
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     }),
   });
   
-  constructor(private readonly usersService: UsersService, private readonly authService: AuthService) { }
+  constructor(private readonly usersService: UsersService, private readonly authService: AuthService,private router: Router) { }
 
   ngOnInit(): void { 
   }
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
     }).subscribe({
       next: (response) => {
         this.authService.setToken(response.token!);
-        alert('Login successful');
+        this.navigate();
       },
       error: (error) => {
         if (error.error.errors) {
@@ -52,5 +53,9 @@ export class LoginComponent implements OnInit {
           alert(JSON.stringify(error.error));
         }
     }});
+  }
+
+  navigate(){
+    this.router.navigate([''])
   }
 }

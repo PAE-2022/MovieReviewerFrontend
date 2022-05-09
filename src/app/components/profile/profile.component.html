@@ -7,19 +7,19 @@
 
 <body>
 
-    <div class="student-profile py-4">
+    <div class="student-profile py-4" *ngIf="user">
         <div class="container">
             <div class="row">
 
                 <!---Profile card --->
                 <div class="col-lg-4 profile-info">
                     <div class="card shadow-sm">
-                        <div class="card-header bg-transparent text-center">
+                        <div class="card-header bg-transparent text-center" *ngIf="user.avatar">
                             <img class="profile_img"
-                                src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
+                            [src]="user.avatar | safe"
                                 alt="student dp">
                             <div class="edit-profile">
-                                <h3>Nardibee</h3>
+                                <h3>{{ user.name }}</h3>
                                 <a class="edit-button"><mat-icon class="settings">edit</mat-icon></a>
                             </div>
                         </div>
@@ -55,9 +55,9 @@
                             <div class="review">
                                 <div class="review-info">
                                     <img class="profile_img"
-                                    src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
-                                    alt="student dp">
-                                    <div class="movie-name">Nardibee reviewed  <strong>- Turning Red</strong></div>
+                                    [src]="user.avatar | safe"
+                                    alt="student dp" *ngIf="user.avatar">
+                                    <div class="movie-name">{{user.name}} <strong>- Turning Red</strong></div>
                                     <mat-icon class="star">star</mat-icon>
                                     <mat-icon class="star">star</mat-icon>
                                     <mat-icon class="star">star</mat-icon>
@@ -80,29 +80,30 @@
                         </mat-tab>
                         <mat-tab label="Favorite Movies">
                             <div class="movies">
-                                <div *ngFor = "let movie of movies" class="movie">
+                                <div *ngFor = "let movie of user.favorites" class="movie" >
                                     <button class= "like-btn" mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
                                         <mat-icon>favorite</mat-icon>
                                     </button>
                                     <img 
-                                    [src]="_DomSanitizationService.bypassSecurityTrustUrl(movie.Poster)"
+                                    [src]="movie.cover | safe"
                                     alt=""
-                                    class="movie-thumbnail">
+                                    class="movie-thumbnail" *ngIf="movie.cover">
                                 </div>
                             </div>
                         </mat-tab>
                         <mat-tab label="Friends">
                             <div class="friends">
-                                <div *ngFor = "let movie of movies" class="friend">
-                                    <a href=# class="bg-transparent text-center">
+                                <div *ngFor = "let friend of user.following" class="friend">
+                                    <a href='/profile' class="bg-transparent text-center">
                                         <img class="friend-img"
-                                            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
-                                            alt="student dp">
+                                            [src]="friend.avatar | safe"
+                                            alt="friend.name"  *ngIf="friend.avatar">
                                         <div class="friend-name">
-                                            <p>Friend name</p>
+                                            <p>{{friend.name}}</p>
                                         </div>
                                     </a>
                                 </div>
+
                             </div>
                         </mat-tab>
                     </mat-tab-group>

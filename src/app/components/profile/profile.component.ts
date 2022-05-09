@@ -1,29 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import moviesJson from '../../../movies.json'
-import { DomSanitizer } from '@angular/platform-browser';
-interface movie {
-    Title:string; 
-    Year:string; 
-    Rated:string;
-    Released:string; 
-    Runtime:string;
-    Genre:string;
-    Director:string;
-    Writer:string;
-    Actors:string; 
-    Plot:string;
-    Language:string;
-    Country:string; 
-    Awards:string; 
-    Poster:string; 
-    Metascore:string; 
-    imdbRating:string; 
-    imdbVotes:string
-    imdbID:string;
-    Type:string; 
-    Response:string; 
-    Images:Array<string>; 
-  }
+import { AuthService } from 'src/app/auth.service';
+import {  UsersService } from 'src/app/api/services';
+import { Movie, User } from 'src/app/api/models';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-profile',
@@ -31,10 +11,28 @@ interface movie {
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  userId:string | any;
+  user: User | undefined;
+  
 
-  constructor(public _DomSanitizationService: DomSanitizer) { }
+  constructor(private readonly authService:AuthService, private readonly userService:UsersService, protected sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    this.getUserId();
+
+
   }
-  public movies: movie[] = moviesJson;
+  getUserId(){
+    this.userId = this.authService.getUserId()
+    this.userService.apiUsersIdGet({
+      id:this.userId,
+    }).subscribe((user)=>{
+      this.user = user;
+    });
+  }
+  sanitizeUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+
 }

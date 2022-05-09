@@ -9,11 +9,13 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './movie-datails.component.html',
   styleUrls: ['./movie-datails.component.css']
 })
-export class MovieDatailsComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,readonly moviesService: MoviesService, protected sanitizer: DomSanitizer) { }
+
+export class MovieDatailsComponent implements OnInit {
   id: string | any;
   movie: Movie | undefined;
+  constructor(private route: ActivatedRoute,readonly moviesService: MoviesService, protected sanitizer: DomSanitizer) { }
+
 
   ngOnInit(): void {
     this.route.params.subscribe( params =>
