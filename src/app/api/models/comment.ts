@@ -1,5 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
+import { User } from './user';
+
 export interface Comment {
 
   /**
@@ -20,5 +22,5 @@ export interface Comment {
   /**
    * User id
    */
-  createdBy?: string;
+  createdBy?: User;
 }

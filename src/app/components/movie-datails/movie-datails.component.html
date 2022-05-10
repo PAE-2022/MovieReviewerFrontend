@@ -13,14 +13,14 @@
                 <div class="col-lg-4">
                     <div class="card shadow-sm">
 
-                            <button class="like-btn" mat-fab color="disabled" (click)="onRemoveFromFavorites(id)" 
+                        <button class="like-btn" mat-fab color="disabled" (click)="onRemoveFromFavorites(id)"
                             aria-label="Example icon-button with a heart icon" *ngIf="id && isFavorite">
                             <mat-icon>cancel</mat-icon>
-                            </button>
-                            <button class="like-btn" mat-fab color="warn" (click)="onAddToFavorites(id)" 
+                        </button>
+                        <button class="like-btn" mat-fab color="warn" (click)="onAddToFavorites(id)"
                             aria-label="Example icon-button with a heart icon" *ngIf="id && !isFavorite">
                             <mat-icon>favorite</mat-icon>
-                            </button>
+                        </button>
 
                         <img class="movie_img" [alt]="movie.name" [src]="movie.cover">
                         <div class="card-body">
@@ -97,25 +97,29 @@
                 <div class="card-header bg-transparent border-0">
                     <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Comments</h3>
                 </div>
-                <div *ngFor="let comment of movie.comments">
-                    <a target="_blank">
-                        <h6 class="user"><b><i>{{comment.createdBy}}</i></b></h6>
-                        <p>{{comment.content}}</p>
-                    </a>
-                </div>
-                <!--div class="card-body pt-0">
-                    <h6 class="user"><b><i>Miguel Valle</i></b></h6>
-                    <p>Gran pelicula, ame la trama!</p>
-                </div-->
                 <div class="card-body pt-0">
                     <form action="">
-                        <input type="text" id="comment" name="comment" size="60" placeholder="Add a comment...">
-                        <button mat-button (click)="postComment()">
+                        <input #commentInput type="text" id="comment" name="comment" size="60"
+                            placeholder="Add a comment...">
+                        <button mat-button (click)="postComment(commentInput.value)">
                             <mat-icon>wrap_text</mat-icon>
                             Post
                         </button>
                     </form>
                 </div>
+                <div *ngFor="let comment of movie.comments" class="card-body pt-0">
+                    <div style="display: flex; flex-direction: row;">
+                        <img width="32" height="32" [src]="comment.createdBy!.avatar" class="rounded-circle mr-2">
+                        <h6 class="user"><b><i>{{comment.createdBy!.name}}</i></b></h6>
+                    </div>
+                    
+                    <p>{{comment.content}}</p>
+                    <mat-divider></mat-divider>
+                </div>
+                <!--div class="card-body pt-0">
+                    <h6 class="user"><b><i>Miguel Valle</i></b></h6>
+                    <p>Gran pelicula, ame la trama!</p>
+                </div-->
             </div>
         </div>
     </div>

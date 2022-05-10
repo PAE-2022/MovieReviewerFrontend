@@ -100,7 +100,19 @@ export class MovieDatailsComponent implements OnInit {
     return movie.comments!.map((comment) => comment.content!);
   }
 
-  postComment() {
-    //this.moviesService.apiMoviesIdCommentPost()
+  postComment(content: string) {
+    this.moviesService.apiMoviesIdCommentPost({
+      id: this.movie?._id!,
+      body: {
+        comment: content,
+      },
+    }).subscribe({
+      next: () => {
+        // do nothing
+      },
+      error: (err) => {
+        alert(err.error.message);
+      }
+    })
   }
 }
