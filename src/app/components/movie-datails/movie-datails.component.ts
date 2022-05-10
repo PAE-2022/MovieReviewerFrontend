@@ -115,4 +115,21 @@ export class MovieDatailsComponent implements OnInit {
       }
     })
   }
+
+  postRate(grade :any) {
+    var value = parseInt(grade)
+    this.moviesService.apiMoviesIdRatePost({
+      id: this.movie?._id!,
+      body: {
+       score : value,
+      },
+    }).subscribe({
+      next: () => {
+        // do nothing
+      },
+      error: (err) => {
+        alert(err.error.message);
+      }
+    })
+  }
 }

@@ -23,10 +23,29 @@
                         </button>
 
                         <img class="movie_img" [alt]="movie.name" [src]="movie.cover">
+
                         <div class="card-body">
                             <h3>{{movie.name}}</h3>
-                            <p class="mb-0"><strong class="pr-1">Users Raiting</strong>{{movie.score}}</p>
+                            <p class="mb-0"><strong class="pr-1">Users Raiting</strong>{{movie.score}}</p><br>
+                            
+                            <div class="ec-stars-wrapper">
+                                <form>
+                                    <p class="clasificacion">
+                                        <input #rateInput1 id="radio1" type="radio" value=5>
+                                        <label for="radio1" (click)="postRate(rateInput1.value)"><mat-icon>star</mat-icon></label>
+                                        <input #rateInput2 id="radio2" type="radio" name="estrellas" value=4>
+                                        <label for="radio2" (click)="postRate(rateInput2.value)"><mat-icon>star</mat-icon></label>
+                                        <input #rateInput3 id="radio3" type="radio" name="estrellas" value=3>
+                                        <label for="radio3" (click)="postRate(rateInput3.value)"><mat-icon>star</mat-icon></label>
+                                        <input #rateInput4 id="radio4" type="radio" name="estrellas" value=2>
+                                        <label for="radio4" (click)="postRate(rateInput4.value)"><mat-icon>star</mat-icon></label>
+                                        <input #rateInput5 id="radio5" type="radio" name="estrellas" value=1>
+                                        <label for="radio5" (click)="postRate(rateInput5.value)"><mat-icon>star</mat-icon></label>
+                                  </form>
+                            </div>
+
                         </div>
+
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -112,14 +131,10 @@
                         <img width="32" height="32" [src]="comment.createdBy!.avatar" class="rounded-circle mr-2">
                         <h6 class="user"><b><i>{{comment.createdBy!.name}}</i></b></h6>
                     </div>
-                    
+
                     <p>{{comment.content}}</p>
                     <mat-divider></mat-divider>
                 </div>
-                <!--div class="card-body pt-0">
-                    <h6 class="user"><b><i>Miguel Valle</i></b></h6>
-                    <p>Gran pelicula, ame la trama!</p>
-                </div-->
             </div>
         </div>
     </div>
