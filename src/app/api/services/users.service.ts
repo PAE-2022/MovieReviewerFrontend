@@ -12,6 +12,7 @@ import { map, filter } from 'rxjs/operators';
 import { AddToFavoritesDto } from '../models/add-to-favorites-dto';
 import { CreateUserDto } from '../models/create-user-dto';
 import { FollowDto } from '../models/follow-dto';
+import { ModifyUserDto } from '../models/modify-user-dto';
 import { User } from '../models/user';
 
 @Injectable({
@@ -479,6 +480,154 @@ export class UsersService extends BaseService {
 }> {
 
     return this.apiUsersFollowersPost$Response(params).pipe(
+      map((r: StrictHttpResponse<{
+'message'?: string;
+}>) => r.body as {
+'message'?: string;
+})
+    );
+  }
+
+  /**
+   * Path part for operation apiUsersPatch
+   */
+  static readonly ApiUsersPatchPath = '/api/users';
+
+  /**
+   * Modify user
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUsersPatch()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  apiUsersPatch$Response(params: {
+
+    /**
+     * Modify user dto
+     */
+    body: ModifyUserDto
+  }): Observable<StrictHttpResponse<{
+'message'?: string;
+}>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UsersService.ApiUsersPatchPath, 'patch');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<{
+        'message'?: string;
+        }>;
+      })
+    );
+  }
+
+  /**
+   * Modify user
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `apiUsersPatch$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  apiUsersPatch(params: {
+
+    /**
+     * Modify user dto
+     */
+    body: ModifyUserDto
+  }): Observable<{
+'message'?: string;
+}> {
+
+    return this.apiUsersPatch$Response(params).pipe(
+      map((r: StrictHttpResponse<{
+'message'?: string;
+}>) => r.body as {
+'message'?: string;
+})
+    );
+  }
+
+  /**
+   * Path part for operation apiUsersUploadProfilePost
+   */
+  static readonly ApiUsersUploadProfilePostPath = '/api/users/upload-profile';
+
+  /**
+   * Upload profile picture
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUsersUploadProfilePost()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiUsersUploadProfilePost$Response(params: {
+
+    /**
+     * Upload profile picture dto
+     */
+    body: {
+
+/**
+ * Profile picture
+ */
+'picture'?: Blob;
+}
+  }): Observable<StrictHttpResponse<{
+'message'?: string;
+}>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UsersService.ApiUsersUploadProfilePostPath, 'post');
+    if (params) {
+      rb.body(params.body, 'multipart/form-data');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<{
+        'message'?: string;
+        }>;
+      })
+    );
+  }
+
+  /**
+   * Upload profile picture
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `apiUsersUploadProfilePost$Response()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiUsersUploadProfilePost(params: {
+
+    /**
+     * Upload profile picture dto
+     */
+    body: {
+
+/**
+ * Profile picture
+ */
+'picture'?: Blob;
+}
+  }): Observable<{
+'message'?: string;
+}> {
+
+    return this.apiUsersUploadProfilePost$Response(params).pipe(
       map((r: StrictHttpResponse<{
 'message'?: string;
 }>) => r.body as {
