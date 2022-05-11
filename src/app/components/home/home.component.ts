@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from 'src/app/api/services';
 import { Movie } from 'src/app/api/models';
-
+import { AuthService } from 'src/app/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,14 +11,14 @@ import { Movie } from 'src/app/api/models';
   styleUrls: ['./home.component.css']
 })
 
-
-
 export class HomeComponent {
   movies: Movie[] = [];
-  constructor(readonly moviesService: MoviesService ) { 
+  isLogged!: Boolean;
+  constructor(readonly moviesService: MoviesService, readonly authService:AuthService, private router: Router) { 
 
   }
   ngOnInit(){
+    this.authService.redirectGuard();
     this.getAllMovies();
   }
   getAllMovies(){

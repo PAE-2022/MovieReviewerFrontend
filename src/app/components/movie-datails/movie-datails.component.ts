@@ -23,6 +23,7 @@ export class MovieDatailsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.authService.redirectGuard();
     this.route.params.subscribe( params =>
         this.id = params['id']
     )

@@ -94,7 +94,7 @@
                         <mat-tab label="Friends">
                             <div class="friends">
                                 <div *ngFor = "let friend of profileUser.following" class="friend">
-                                    <a href="/profile/{{friend._id}}" class="bg-transparent text-center">
+                                    <a href="/profile/{{friend.id}}" class="bg-transparent text-center">
                                         <img class="friend-img"
                                             [src]="friend.avatar | safe"
                                             alt="friend.name"  *ngIf="friend.avatar">

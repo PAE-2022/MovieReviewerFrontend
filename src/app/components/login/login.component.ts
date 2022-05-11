@@ -4,7 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { UsersService } from 'src/app/api/services';
 import { AuthService } from 'src/app/auth.service';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-//import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,13 +12,13 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
-    email: new FormControl('email', {
+    email: new FormControl('', {
+      
       validators: [
         Validators.required,
         Validators.email,
-      ],
-    }),
-    password: new FormControl('password', {
+      ]}),
+    password: new FormControl('', {
       validators: [
         Validators.required,
         Validators.minLength(6),

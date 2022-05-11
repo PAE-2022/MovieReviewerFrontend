@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 
 @Injectable({
@@ -6,7 +7,7 @@ import jwtDecode from 'jwt-decode';
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(readonly router:Router) { }
 
   isLoggedIn(): boolean {
     return localStorage.getItem('token') !== null;
@@ -27,5 +28,11 @@ export class AuthService {
   getUserId() {
     var profile = jwtDecode(this.getToken()) as any;
     return profile.id as string;
+  }
+  redirectGuard(){
+    if (!this.isLoggedIn()){
+      this.router.navigate(['/login'])
+    }
+
   }
 }

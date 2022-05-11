@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/auth.service';
 import {  UsersService } from 'src/app/api/services';
 import { Movie, User } from 'src/app/api/models';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -18,9 +18,10 @@ export class ProfileComponent implements OnInit {
   user: User | undefined;
   myProfile!:boolean;
 
-  constructor(private route: ActivatedRoute, private readonly authService:AuthService, private readonly userService:UsersService, protected sanitizer: DomSanitizer) { }
+  constructor(private route: ActivatedRoute, private readonly authService:AuthService, private readonly userService:UsersService, protected sanitizer: DomSanitizer,  private router: Router) { }
 
   ngOnInit(): void {
+    this.authService.redirectGuard();
     this.route.params.subscribe( params =>
       this.profileId = params['id']
   )
