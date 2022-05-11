@@ -1,31 +1,29 @@
 body {
-  background-color: black;
+
   background-image: url("../../../assets/movie2.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
   height: auto;
-  min-height: 100%;
-  align-self: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
   
 }
 
 .search-box-container{
-  display: flex;
+
+  width: 100%;
   align-items: center;
   justify-content: center;
+  justify-items: center;
+  display: flex;
 
 }
 .search-box {
-  margin-top: 20px;
-  min-width: 150px;
+  display: block;
+  min-width: 450px;
   max-width: 500px;
-  width: 100%;
+
 
 }
 
@@ -54,9 +52,14 @@ body {
   align-self: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  max-width: 1200px;
+  min-height: 100%;
+  justify-items: center;
+  justify-content: space-between;
+  align-content: center;
+  position: relative;
+  margin-left:200px; ;
+  margin-right: 200px;
+
 }
 .movie{
   width: 280px;
@@ -77,4 +80,15 @@ body {
 .movie-thumbnail{
   width: 100%;
   height: auto;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: rgb(255, 255, 255) !important;
+} 
+
+
+::ng-deep.mat-form-field-empty.mat-form-field-label {
+
+color:white;
 }

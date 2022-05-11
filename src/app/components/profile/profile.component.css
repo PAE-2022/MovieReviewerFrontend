@@ -119,7 +119,10 @@ width: 80%;
 }
 
 
-
+.mat-form-field-outline {
+  background-color: white;
+  border-radius: 5px;
+}
 
 
 
@@ -206,4 +209,20 @@ a:hover{
 
 }
 
+
+
+
+ 
+ 
+ 
+   ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: rgb(255, 255, 255) !important;
+  } 
+
+
+  ::ng-deep.mat-form-field-empty.mat-form-field-label {
+  
+  color:white;
+}
 
