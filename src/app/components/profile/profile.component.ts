@@ -12,8 +12,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  profileId:string | any;
+  //usuario del perfil visible
+  profileId!:string;
   profileUser: User | undefined;
+
+  //usuario en sesion
   userId:string | any;
   user: User | undefined;
   myProfile!:boolean;
@@ -21,33 +24,31 @@ export class ProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute, private readonly authService:AuthService, private readonly userService:UsersService, protected sanitizer: DomSanitizer,  private router: Router) { }
 
   ngOnInit(): void {
+    //redirecciona si no esta logged in
     this.authService.redirectGuard();
+
+    //obtiene el id del usuario del perfil visible
     this.route.params.subscribe( params =>
       this.profileId = params['id']
   )
-    this.getUserId();
+  //obtiene el id del usuario en sesion 
+    this.getUser();
+
+  //obtiene el usuario del perfil visible
     this.getProfileUser();
+
+  //inhabilita el boton de editar perfil
     if(this.profileId === this.userId){
       this.myProfile=true
     }else{
       false;
     }
-
   }
-  getUserId(){
-    this.userId = this.authService.getUserId()
-    this.userService.apiUsersIdGet({
-      id:this.userId,
-    }).subscribe((user)=>{
-      this.user = user;
-    });
-  }
-  getProfileUser(){
-    this.userService.apiUsersIdGet({
-      id:this.profileId,
-    }).subscribe((user)=>{
-      this.profileUser = user;
-    });
+  goToProfile(id:string | undefined){
+    this.router.navigate(['profile/',id])
+    .then(() => {
+    window.location.reload();
+  });
   }
 
   sanitizeUrl(url: string): SafeResourceUrl {
@@ -63,5 +64,23 @@ export class ProfileComponent implements OnInit {
     }
 
   }
+  getUser(){
+    this.userId = this.authService.getUserId()
+    this.userService.apiUsersIdGet({
+      id:this.userId,
+    }).subscribe((user)=>{
+      this.user = user;
+    });
+  }
+  getProfileUser(){
+    this.userService.apiUsersIdGet({
+      id:this.profileId,
+    }).subscribe((user)=>{
+      this.profileUser = user;
+    });
+  }
+
+
+
 
 }

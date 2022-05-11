@@ -11,7 +11,7 @@
       <mat-icon>exit_to_app</mat-icon>
       Logout
     </button>
-    <button mat-button [routerLink]="['/profile', userId]" *ngIf="isLoggedIn">
+    <button mat-button (click)="goToMyProfile()" *ngIf="isLoggedIn">
       <mat-icon>account_circle</mat-icon>
       Profile
     </button>

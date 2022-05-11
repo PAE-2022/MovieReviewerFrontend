@@ -27,3 +27,13 @@ h1 {
   font-family: 'Brush Script MT', cursive;
 }
 
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: rgb(0, 0, 0) !important;
+} 
+
+
+::ng-deep.mat-form-field-empty.mat-form-field-label {
+
+color:rgb(0, 0, 0);
+}

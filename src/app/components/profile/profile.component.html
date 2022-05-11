@@ -93,17 +93,18 @@
                         </mat-tab>
                         <mat-tab label="Friends">
                             <div class="friends">
-                                <div *ngFor = "let friend of profileUser.following" class="friend">
-                                    <a href="/profile/{{friend.id}}" class="bg-transparent text-center">
-                                        <img class="friend-img"
-                                            [src]="friend.avatar | safe"
-                                            alt="friend.name"  *ngIf="friend.avatar">
-                                        <div class="friend-name">
-                                            <p>{{friend.name}}</p>
-                                        </div>
-                                    </a>
-                                </div>
+                                <div *ngFor = "let friend of profileUser.following" class="friend" style="cursor: pointer;"(click)="goToProfile(friend._id)">
 
+                                        <div class="bg-transparent text-center" >
+                                            <img class="friend-img"
+                                                [src]="friend.avatar | safe"
+                                                alt="friend.name"  *ngIf="friend.avatar" >
+                                            <div class="friend-name">
+                                                <p>{{friend.name}}</p>
+                                            </div>
+                                        </div>
+
+                                </div>
                             </div>
                         </mat-tab>
                     </mat-tab-group>

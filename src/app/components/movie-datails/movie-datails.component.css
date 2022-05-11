@@ -120,3 +120,6 @@ input[type="radio"]:checked ~ label {
 .ec-stars-wrapper > a:hover ~ a {
 	color: #888;
 }
+mat-icon{
+  margin-right: 8px;
+} 

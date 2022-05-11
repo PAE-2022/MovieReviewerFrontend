@@ -92,3 +92,8 @@ body {
 
 color:white;
 }
+
+::ng-deep.mat-form-field-empty.mat-form-field{
+
+  color:white;
+  }
