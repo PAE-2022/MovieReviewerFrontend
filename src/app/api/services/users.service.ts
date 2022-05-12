@@ -638,23 +638,29 @@ export class UsersService extends BaseService {
   }
 
   /**
-   * Path part for operation apiUsersMyCommentsGet
+   * Path part for operation apiUsersIdCommentsGet
    */
-  static readonly ApiUsersMyCommentsGetPath = '/api/users/my-comments';
+  static readonly ApiUsersIdCommentsGetPath = '/api/users/{id}/comments';
 
   /**
    * Get logged in user comments
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiUsersMyCommentsGet()` instead.
+   * To access only the response body, use `apiUsersIdCommentsGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiUsersMyCommentsGet$Response(params?: {
+  apiUsersIdCommentsGet$Response(params: {
+
+    /**
+     * favorite movie id
+     */
+    id: string;
   }): Observable<StrictHttpResponse<Array<CommentDto>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, UsersService.ApiUsersMyCommentsGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, UsersService.ApiUsersIdCommentsGetPath, 'get');
     if (params) {
+      rb.path('id', params.id, {});
     }
 
     return this.http.request(rb.build({
@@ -672,14 +678,19 @@ export class UsersService extends BaseService {
    * Get logged in user comments
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiUsersMyCommentsGet$Response()` instead.
+   * To access the full response (for headers, for example), `apiUsersIdCommentsGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiUsersMyCommentsGet(params?: {
+  apiUsersIdCommentsGet(params: {
+
+    /**
+     * favorite movie id
+     */
+    id: string;
   }): Observable<Array<CommentDto>> {
 
-    return this.apiUsersMyCommentsGet$Response(params).pipe(
+    return this.apiUsersIdCommentsGet$Response(params).pipe(
       map((r: StrictHttpResponse<Array<CommentDto>>) => r.body as Array<CommentDto>)
     );
   }
