@@ -30,13 +30,16 @@
                             <p class="mb-0"><strong class="pr-1">Movies Reviewed</strong>65</p>
                         </div>--->
                     </div>
-                    <div class="search-box-friends" >
+                    <div class="search-box-friends">
+                        <br>
                         <form class="example-form">
-                            <mat-form-field class="example-full-width "  color="primary" >
-                              <mat-label >Add Friends</mat-label>
-                              <input matInput #message maxlength="256" placeholder="Search by email...">
+                            <mat-form-field class="example-full-width">
+                                <input matInput #friend maxlength="256" placeholder="Add friend by name...">
                             </mat-form-field>
-                          </form>
+                            <button mat-button (click)="searchFriend(friend.value)">
+                                <mat-icon>group_add</mat-icon>
+                            </button>
+                        </form>
                     </div>
                 </div>
 
