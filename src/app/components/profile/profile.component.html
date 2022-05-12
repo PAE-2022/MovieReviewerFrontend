@@ -7,110 +7,141 @@
 
 <body>
 
-    <div class="student-profile py-4" *ngIf="profileUser">
-        <div class="container">
-            <div class="row">
+  <div class="student-profile py-4" *ngIf="profileUser">
+    <div class="container">
+      <div class="row">
 
-                <!---Profile card --->
-                <div class="col-lg-4 profile-info">
-                    <div class="card shadow-sm">
-                        <div class="card-header bg-transparent text-center" *ngIf="profileUser.avatar">
-                            <img class="profile_img"
-                            [src]="profileUser.avatar | safe"
-                                alt="student dp">
-                            <div class="edit-profile">
-                                <h3>{{ profileUser.name }}</h3>
-                                <a class="edit-button" *ngIf="myProfile"><mat-icon class="settings">edit</mat-icon></a>
-                            </div>
-                        </div>
-                        <!---User info 
-                        <div class="card-body">
-                            <p class="mb-0"><strong class="pr-1">Favorite Genre</strong>Drama</p>
-                            <p class="mb-0"><strong class="pr-1">Favorite Movie</strong>The worst person in the world</p>
-                            <p class="mb-0"><strong class="pr-1">Movies Reviewed</strong>65</p>
-                        </div>--->
-                    </div>
-                    <div class="search-box-friends" >
-                        <form class="example-form">
-                            <mat-form-field class="example-full-width "  color="primary" >
-                              <mat-label >Add Friends</mat-label>
-                              <input matInput #message maxlength="256" placeholder="Search by email...">
-                            </mat-form-field>
-                          </form>
-                    </div>
-                </div>
-
-
-
-
-                
-                <div class="col-lg-8">     
-                    <div style="height: 26px"></div>
-                    <mat-tab-group dynamicHeight [backgroundColor]="'primary'">
-
-
-                        <mat-tab label="Reviews">
-                        <div class="reviews">
-
-                            <div class="review">
-                                <div class="review-info">
-                                    <img class="profile_img"
-                                    [src]="profileUser.avatar | safe"
-                                    alt="student dp" *ngIf="profileUser.avatar">
-                                    <div class="movie-name">{{profileUser.name}} <strong>- Turning Red</strong></div>
-                                    <mat-icon class="star">star</mat-icon>
-                                    <mat-icon class="star">star</mat-icon>
-                                    <mat-icon class="star">star</mat-icon>
-                                    <mat-icon class="star">star</mat-icon>
-                                    <mat-icon class="star">star</mat-icon>
-                                </div>
-                                <mat-card class="example-card">
-                                        <img mat-card-image src="https://e00-us-marca.uecdn.es/assets/multimedia/imagenes/2022/03/25/16482324866811.jpg" alt="Photo of a Shiba Inu">
-                                    <mat-card-content>
-                                      <p class="comment">
-                                        "Like the best Pixars, you don’t need to have a kid to see it. It’s excellent entertainment for grown-up people, too."
-                                      </p>
-                                    </mat-card-content>
-                                </mat-card>
-                            </div>    
-
-                        </div>
-                            
-
-                        </mat-tab>
-                        <mat-tab label="Favorite Movies">
-                            <div class="movies">
-                                <div *ngFor = "let movie of profileUser.favorites"   class="movie" >
-                                    <button class= "like-btn" mat-icon-button color="warn" aria-label="Example icon-button with a heart icon" (click)="onRemoveFromFavorites(movie._id)" >
-                                        <mat-icon>favorite</mat-icon>
-                                    </button>
-                                    <img 
-                                    [src]="movie.cover | safe"
-                                    alt=""
-                                    class="movie-thumbnail" *ngIf="movie.cover" [routerLink]="['/details', movie._id]">
-                                </div>
-                            </div>
-                        </mat-tab>
-                        <mat-tab label="Friends">
-                            <div class="friends">
-                                <div *ngFor = "let friend of profileUser.following" class="friend" style="cursor: pointer;"(click)="goToProfile(friend._id)">
-
-                                        <div class="bg-transparent text-center" >
-                                            <img class="friend-img"
-                                                [src]="friend.avatar | safe"
-                                                alt="friend.name"  *ngIf="friend.avatar" >
-                                            <div class="friend-name">
-                                                <p>{{friend.name}}</p>
-                                            </div>
-                                        </div>
-
-                                </div>
-                            </div>
-                        </mat-tab>
-                    </mat-tab-group>
-                </div>
+        <!---Profile card --->
+        <div class="col-lg-4 profile-info">
+          <div class="card shadow-sm">
+            <div class="card-header bg-transparent text-center" *ngIf="profileUser.avatar">
+              <img class="profile_img" [src]="profileUser.avatar | safe" alt="student dp">
+              <div class="edit-profile">
+                <h3>{{ profileUser.name }}</h3>
+                <a type="button" class="edit btn me-5" *ngIf="myProfile" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal">
+                  <mat-icon class="settings">edit</mat-icon>
+                </a>
+              </div>
             </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="exampleModalLabel">Edit Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <form [formGroup]="editForm" (ngSubmit)="onSubmitForm()">
+                    <div class="modal-body">
+
+                      <div class="mb-3">
+                        <label for="name" class="form-label">User name</label>
+                        <input type="text" formControlName = "name" class="form-control" id="name">
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  >Cancel</button>
+                      <button type="button" type ="submit" class="btn btn-success" data-bs-dismiss="modal">Edit</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!---User info 
+<div class="card-body">
+    <p class="mb-0"><strong class="pr-1">Favorite Genre</strong>Drama</p>
+    <p class="mb-0"><strong class="pr-1">Favorite Movie</strong>The worst person in the world</p>
+    <p class="mb-0"><strong class="pr-1">Movies Reviewed</strong>65</p>
+</div>--->
+
+
+          <div class="search-box-friends">
+            <form class="example-form">
+              <mat-form-field class="example-full-width" color="primary">
+                <mat-label>Add Friends</mat-label>
+                <input matInput #message maxlength="256" placeholder="Search by email...">
+              </mat-form-field>
+            </form>
+          </div>
         </div>
+
+
+
+
+
+        <div class="col-lg-8">
+          <div style="height: 26px"></div>
+          <mat-tab-group dynamicHeight [backgroundColor]="'primary'">
+            <mat-tab label="Reviews">
+              <div class="reviews">
+
+                <div class="review">
+                  <div class="review-info">
+                    <img class="profile_img" [src]="profileUser.avatar | safe" alt="student dp"
+                      *ngIf="profileUser.avatar">
+                    <div class="movie-name">{{profileUser.name}}
+                      <strong>- Turning Red</strong></div>
+                    <mat-icon class="star">star</mat-icon>
+                    <mat-icon class="star">star</mat-icon>
+                    <mat-icon class="star">star</mat-icon>
+                    <mat-icon class="star">star</mat-icon>
+                    <mat-icon class="star">star</mat-icon>
+                  </div>
+                  <mat-card class="example-card">
+                    <img mat-card-image
+                      src="https://e00-us-marca.uecdn.es/assets/multimedia/imagenes/2022/03/25/16482324866811.jpg"
+                      alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                      <p class="comment">
+                        "Like the best Pixars, you don’t
+                        need to have a kid to see it.
+                        It’s excellent entertainment for
+                        grown-up people, too."
+                      </p>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+
+              </div>
+
+
+            </mat-tab>
+            <mat-tab label="Favorite Movies">
+              <div class="movies">
+                <div *ngFor="let movie of profileUser.favorites" class="movie">
+                  <button class="like-btn" mat-icon-button color="warn" aria-label="Example
+                icon-button with a heart icon" (click)="onRemoveFromFavorites(movie._id)">
+                    <mat-icon>favorite</mat-icon>
+                  </button>
+                  <img [src]="movie.cover | safe" alt="" class="movie-thumbnail" *ngIf="movie.cover"
+                    [routerLink]="['/details', movie._id]">
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="Friends">
+              <div class="friends">
+                <div *ngFor="let friend of
+            profileUser.following" class="friend" style="cursor: pointer;" (click)="goToProfile(friend._id)">
+
+                  <div class="bg-transparent text-center">
+                    <img class="friend-img" [src]="friend.avatar | safe" alt="friend.name" *ngIf="friend.avatar">
+                    <div class="friend-name">
+                      <p>{{friend.name}}</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
     </div>
+  </div>
 
 </body>

@@ -233,3 +233,8 @@ a:hover{
 .search-box-friends{
   margin-top: 30px;
 }
+.edit{
+  background-color: transparent;
+  color: #000;
+  border: none;
+}
