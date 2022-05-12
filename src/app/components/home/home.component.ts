@@ -3,6 +3,7 @@ import { MoviesService } from 'src/app/api/services';
 import { Movie } from 'src/app/api/models';
 import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'src/app/notifications.service';
 
 
 @Component({
@@ -14,12 +15,15 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   movies: Movie[] = [];
   isLogged!: Boolean;
-  constructor(readonly moviesService: MoviesService, readonly authService:AuthService, private router: Router) { 
+  constructor(readonly moviesService: MoviesService,
+    readonly authService:AuthService,
+    private router: Router) { 
 
   }
   ngOnInit(){
     this.authService.redirectGuard();
     this.getAllMovies();
+    const userId = this.authService.getUserId();
   }
   getAllMovies(){
     this.moviesService.apiMoviesGet().subscribe((movies) =>{
