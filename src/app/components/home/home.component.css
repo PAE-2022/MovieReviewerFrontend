@@ -5,9 +5,10 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
-  height: 100vh;
+  height: auto;
   margin: 0;
-  
+  background-color: black;
+
 }
 
 .search-box-container{

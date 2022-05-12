@@ -5,6 +5,7 @@ import { ModifyUserDto, Movie, User } from 'src/app/api/models';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommentDto } from 'src/app/api/models';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class ProfileComponent implements OnInit {
   user: User | undefined;
   myProfile!: boolean;
   selectedPictureFile: File | undefined;
+
+  comments: CommentDto[] = [];
 
   constructor(private route: ActivatedRoute, private readonly authService: AuthService, private readonly userService: UsersService, protected sanitizer: DomSanitizer, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -54,7 +57,6 @@ export class ProfileComponent implements OnInit {
     });
     this.pictureForm = this.formBuilder.group({
       picture: ['', [Validators.required]],
-
     });
   }
 
@@ -136,6 +138,16 @@ export class ProfileComponent implements OnInit {
       id: this.profileId,
     }).subscribe((user) => {
       this.profileUser = user;
+      this.userService.apiUsersIdCommentsGet({
+        id: this.profileId,
+      }).subscribe({
+        next: (res) => {
+          this.comments = res;
+        },
+        error: (err) => {
+          // alert(err.error.message);
+        },
+      });
     });
   }
 
@@ -153,6 +165,8 @@ export class ProfileComponent implements OnInit {
           }
         }).subscribe({
           next: () => {
+            this.getProfileUser();
+
             alert("Friend added")
           },
           error: (err) => {

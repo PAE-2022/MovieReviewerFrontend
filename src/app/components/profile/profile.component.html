@@ -81,7 +81,19 @@
               </div>
             </div>
           </div>
-
+          <div class="search-box-friends" *ngIf="myProfile" >
+            <br>
+            <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <input matInput #friend maxlength="256" placeholder="Add friend by name...">
+          </mat-form-field>
+          <button mat-button (click)="searchFriend(friend.value)">
+            <mat-icon>group_add</mat-icon>
+          </button>
+          </form>
+          </div>
+          
+        </div>
           <!---User info 
 <div class="card-body">
     <p class="mb-0"><strong class="pr-1">Favorite Genre</strong>Drama</p>
@@ -89,16 +101,6 @@
     <p class="mb-0"><strong class="pr-1">Movies Reviewed</strong>65</p>
 </div>--->
 
-
-          <div class="search-box-friends">
-            <form class="example-form">
-              <mat-form-field class="example-full-width" color="primary">
-                <mat-label>Add Friends</mat-label>
-                <input matInput #message maxlength="256" placeholder="Search by email...">
-              </mat-form-field>
-            </form>
-          </div>
-        </div>
 
 
 
@@ -110,26 +112,23 @@
             <mat-tab label="Reviews">
               <div class="reviews">
 
-                <div class="review">
+                <div class="review" *ngFor="let comment of comments">
                   <div class="review-info">
                     <img class="profile_img" [src]="profileUser.avatar | safe" alt="student dp"
                       *ngIf="profileUser.avatar">
                     <div class="movie-name">{{profileUser.name}}
-                      <strong>- Turning Red</strong></div>
+                      <strong>- {{ comment.movieName }}</strong></div>
                   </div>
-                  <mat-card class="example-card">
+                  <div class="example-card" style="display: flex; flex-direction: row;">
                     <img mat-card-image
-                      src="https://e00-us-marca.uecdn.es/assets/multimedia/imagenes/2022/03/25/16482324866811.jpg"
+                      [src]="comment.moviePicture! | safe"
                       alt="Photo of a Shiba Inu">
-                    <mat-card-content>
-                      <p class="comment">
-                        "Like the best Pixars, you don’t
-                        need to have a kid to see it.
-                        It’s excellent entertainment for
-                        grown-up people, too."
-                      </p>
-                    </mat-card-content>
-                  </mat-card>
+                    <div style="margin-left: 8px;">
+                      <h6 class="comment">
+                        {{ comment.content }}
+                      </h6>
+                    </div>
+                  </div>
                 </div>
 
               </div>
