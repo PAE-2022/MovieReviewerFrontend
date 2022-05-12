@@ -74,7 +74,7 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     MatAutocompleteModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ApiModule.forRoot({ rootUrl: 'http://localhost:3000' }),
+    ApiModule.forRoot({ rootUrl: 'http://34.125.55.126' }),
     MatDividerModule,
   ],
   providers: [

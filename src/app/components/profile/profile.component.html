@@ -24,17 +24,15 @@
                   data-bs-target="#usernameModal">
                   <mat-icon class="settings">edit</mat-icon>
                 </a>
-                <button mat-mini-fab  *ngIf="!myProfile">
+                <button mat-mini-fab  *ngIf="!myProfile && !isMyFriend" (click)="onFollow()">
                   <mat-icon>add_circle</mat-icon>
                  </button>
-                <button mat-mini-fab  *ngIf="!myProfile">	
-                  <mat-icon>cancel</mat-icon>
-              </button>
+
               </div>
             </div>
             <!-- Modal upload profile pic-->
             <div class="modal fade" id="pictureModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
+              aria-hidden="true" *ngIf="myProfile">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -91,15 +89,8 @@
             <mat-icon>group_add</mat-icon>
           </button>
           </form>
-          </div>
-          
+          </div>          
         </div>
-          <!---User info 
-<div class="card-body">
-    <p class="mb-0"><strong class="pr-1">Favorite Genre</strong>Drama</p>
-    <p class="mb-0"><strong class="pr-1">Favorite Movie</strong>The worst person in the world</p>
-    <p class="mb-0"><strong class="pr-1">Movies Reviewed</strong>65</p>
-</div>--->
 
 
 
@@ -117,15 +108,15 @@
                     <img class="profile_img" [src]="profileUser.avatar | safe" alt="student dp"
                       *ngIf="profileUser.avatar">
                     <div class="movie-name">{{profileUser.name}}
-                      <strong>- {{ comment.movieName }}</strong></div>
+                      <strong>reviewd - {{ comment.movieName }}</strong></div>
                   </div>
-                  <div class="example-card" style="display: flex; flex-direction: row;">
+                  <div class="example-card" style="display: flex; flex-direction: column;">
                     <img mat-card-image
                       [src]="comment.moviePicture! | safe"
                       alt="Photo of a Shiba Inu">
                     <div style="margin-left: 8px;">
                       <h6 class="comment">
-                        {{ comment.content }}
+                        "{{ comment.content }}" - {{profileUser.name}}
                       </h6>
                     </div>
                   </div>

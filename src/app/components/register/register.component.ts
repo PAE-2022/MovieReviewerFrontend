@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CreateUserDto } from 'src/app/api/models';
 import { UsersService } from 'src/app/api/services';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -34,7 +35,7 @@ export class RegisterComponent implements OnInit {
     }),
   });
 
-  constructor(private readonly userService: UsersService) { }
+  constructor(private readonly userService: UsersService, private readonly auth:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -42,6 +43,7 @@ export class RegisterComponent implements OnInit {
   private createUser(data: CreateUserDto){
     this.userService.apiUsersSignupPost({body:data}).subscribe(()=>{
       alert('User created');
+      this.auth.redirectGuard();
     }, (error) => {
       if (error.error.errors) {
         error.error.errors.forEach((element: any) => {

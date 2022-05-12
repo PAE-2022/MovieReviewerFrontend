@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { UsersService } from 'src/app/api/services';
-import { ModifyUserDto, Movie, User } from 'src/app/api/models';
+import { FollowDto, ModifyUserDto, Movie, User } from 'src/app/api/models';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,17 +17,16 @@ export class ProfileComponent implements OnInit {
   editForm!: FormGroup;
   pictureForm!: FormGroup;
   submitted = false;
-  //usuario del perfil visible
   profileId!: string;
   profileUser: User | undefined;
-
-  //usuario en sesion
+  friends:Array<User> | undefined;
   userId: string | any;
   user: User | undefined;
   myProfile!: boolean;
   selectedPictureFile: File | undefined;
-
   comments: CommentDto[] = [];
+
+
 
   constructor(private route: ActivatedRoute, private readonly authService: AuthService, private readonly userService: UsersService, protected sanitizer: DomSanitizer, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -48,6 +47,7 @@ export class ProfileComponent implements OnInit {
     //inhabilita el boton de editar perfil
     if (this.profileId === this.userId) {
       this.myProfile = true
+
     } else {
       false;
     }
@@ -79,8 +79,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  private modifyUser(data: ModifyUserDto){
-    this.userService.apiUsersPatch({body:data}).subscribe(()=>{
+  private modifyUser(data: ModifyUserDto) {
+    this.userService.apiUsersPatch({ body: data }).subscribe(() => {
       this.getProfileUser();
     }, (error) => {
       if (error.error.errors) {
@@ -91,8 +91,8 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  private uploadPicture(data: { picture:Blob; }){
-    this.userService.apiUsersUploadProfilePost({body:data}).subscribe(()=>{
+  private uploadPicture(data: { picture: Blob; }) {
+    this.userService.apiUsersUploadProfilePost({ body: data }).subscribe(() => {
       this.getProfileUser();
     }, (error) => {
       if (error.error.errors) {
@@ -102,7 +102,7 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
-  
+
   goToProfile(id: string | undefined) {
     this.router.navigate(['profile/', id])
       .then(() => {
@@ -128,16 +128,24 @@ export class ProfileComponent implements OnInit {
     this.userId = this.authService.getUserId()
     this.userService.apiUsersIdGet({
       id: this.userId,
-    }).subscribe((user) => {
-      this.user = user;
+    }).subscribe({
+      next: (user) => {
+        this.user = user;
+        this.friends = user.following;
+      },
+      error: (err) => {
+      },
     });
   }
-  
+
+
+
   getProfileUser() {
     this.userService.apiUsersIdGet({
       id: this.profileId,
     }).subscribe((user) => {
       this.profileUser = user;
+ 
       this.userService.apiUsersIdCommentsGet({
         id: this.profileId,
       }).subscribe({
@@ -145,15 +153,17 @@ export class ProfileComponent implements OnInit {
           this.comments = res;
         },
         error: (err) => {
-          // alert(err.error.message);
         },
       });
     });
   }
 
+  get isMyFriend(): boolean {
+    return this.user?.following?.find((friend) => friend._id === this.profileId) !== undefined;
+  }
 
-  searchFriend(friend : string) {
-    //console.log(friend)
+
+  searchFriend(friend: string) {
     this.userService.apiUsersSearchGet({
       query: friend
     }).subscribe({
@@ -166,7 +176,6 @@ export class ProfileComponent implements OnInit {
         }).subscribe({
           next: () => {
             this.getProfileUser();
-
             alert("Friend added")
           },
           error: (err) => {
@@ -186,7 +195,22 @@ export class ProfileComponent implements OnInit {
     if (file) {
       this.selectedPictureFile = file;
     }
-}
+  }
+
+
+  private follow(data:FollowDto){
+    this.userService.apiUsersFollowersPost({body:data}).subscribe(()=>{
+      this.getUser();
+    });
+  }
+
+  onFollow() {
+    const data:FollowDto = {};
+    data.userId=this.profileId;
+    this.follow(data);
+
+  }
+
 
 
 }

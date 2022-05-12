@@ -23,7 +23,8 @@ export class AppComponent {
     return this.authService.isLoggedIn();
   }
   goToMyProfile(){
-    this.router.navigate(['/profile', this.userId])
+    const id = this.authService.getUserId() ;
+    this.router.navigate(['/profile', id])
     .then(() => {
     window.location.reload();
   });

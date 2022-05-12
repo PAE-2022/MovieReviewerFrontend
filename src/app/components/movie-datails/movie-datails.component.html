@@ -129,7 +129,7 @@
                 <div *ngFor="let comment of movie.comments" class="card-body pt-0">
                     <div style="display: flex; flex-direction: row;">
                         <img width="32" height="32" [src]="comment.createdBy!.avatar" class="rounded-circle mr-2">
-                        <h6 class="user"><b><i>{{comment.createdBy!.name}}</i></b></h6>
+                        <h6 class="user" style="cursor: pointer;" [routerLink]="['/profile', comment.createdBy!._id]"><b><i>{{comment.createdBy!.name}}</i></b></h6>
                     </div>
 
                     <p>{{comment.content}}</p>
