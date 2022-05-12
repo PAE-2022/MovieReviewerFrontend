@@ -24,19 +24,25 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.getUserId();
-
+    const notifHandler = (notif: any) => {
+      this._snackBar.open(notif.message, 'Ok', {
+        duration: 2000,
+      });
+    };
+    if (this.authService.isLoggedIn()) {
+      this.notificationObservable = this.notificationsService
+        .onFollower(this.authService.getUserId())
+        .subscribe(notifHandler);
+    }
     this.authService.$onLoggedIn.subscribe((userId) => {
       if (this.notificationObservable) {
         this.notificationObservable.unsubscribe();
       }
       if (userId) {
+        console.log('subscribing to notifications');
         this.notificationObservable = this.notificationsService
           .onFollower(userId)
-          .subscribe((notif) => {
-            this._snackBar.open(notif.message, 'Ok', {
-              duration: 2000,
-            });
-        });
+          .subscribe(notifHandler);
       }
     })
   }
