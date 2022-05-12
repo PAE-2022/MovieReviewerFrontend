@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { AddToFavoritesDto } from '../models/add-to-favorites-dto';
+import { CommentDto } from '../models/comment-dto';
 import { CreateUserDto } from '../models/create-user-dto';
 import { FollowDto } from '../models/follow-dto';
 import { ModifyUserDto } from '../models/modify-user-dto';
@@ -633,6 +634,53 @@ export class UsersService extends BaseService {
 }>) => r.body as {
 'message'?: string;
 })
+    );
+  }
+
+  /**
+   * Path part for operation apiUsersMyCommentsGet
+   */
+  static readonly ApiUsersMyCommentsGetPath = '/api/users/my-comments';
+
+  /**
+   * Get logged in user comments
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUsersMyCommentsGet()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUsersMyCommentsGet$Response(params?: {
+  }): Observable<StrictHttpResponse<Array<CommentDto>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, UsersService.ApiUsersMyCommentsGetPath, 'get');
+    if (params) {
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<CommentDto>>;
+      })
+    );
+  }
+
+  /**
+   * Get logged in user comments
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `apiUsersMyCommentsGet$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUsersMyCommentsGet(params?: {
+  }): Observable<Array<CommentDto>> {
+
+    return this.apiUsersMyCommentsGet$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<CommentDto>>) => r.body as Array<CommentDto>)
     );
   }
 

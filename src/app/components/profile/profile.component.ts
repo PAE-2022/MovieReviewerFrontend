@@ -114,6 +114,32 @@ export class ProfileComponent implements OnInit {
   }
 
 
+  searchFriend(friend : string) {
+    //console.log(friend)
+    this.userService.apiUsersSearchGet({
+      query: friend
+    }).subscribe({
+      next: (res) => {
+        console.log(res[0]._id)
+        this.userService.apiUsersFollowersPost({
+          body: {
+            userId: res[0]._id
+          }
+        }).subscribe({
+          next: () => {
+            alert("Friend added")
+          },
+          error: (err) => {
+            alert(err.error.message);
+          }
+        })
+      },
+      error: (err) => {
+        alert(err.error.message);
+      }
+    })
+  }
+
 
 
 }

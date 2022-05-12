@@ -3,7 +3,8 @@
 import { Movie } from './movie';
 export interface User {
 
-  '_id'?: string;
+  _id: string
+
   /**
    * User avatar
    */

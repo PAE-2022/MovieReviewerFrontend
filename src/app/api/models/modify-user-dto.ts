@@ -6,4 +6,9 @@ export interface ModifyUserDto {
    * User name
    */
   name?: string;
+
+  /**
+   * User password
+   */
+  password?: string;
 }
