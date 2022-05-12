@@ -113,6 +113,7 @@ export class ProfileComponent implements OnInit {
   }
   private removeFromFavorites(id: string) {
     this.userService.apiUsersFavoritesIdDelete({ id: id }).subscribe(() => {
+      this.getProfileUser();
     });
   }
   onRemoveFromFavorites(id: string | undefined) {
