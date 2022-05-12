@@ -31,15 +31,16 @@ import { ApiModule } from './api/api.module';
 import {MatDividerModule} from '@angular/material/divider';
 import { ApiTokenInterceptor } from './token.interceptor';
 import { SafePipe } from './safe.pipe';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 export const API_INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   useExisting: forwardRef(() => ApiTokenInterceptor),
   multi: true
 };
-
-
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     SafePipe
   ],
   imports: [
+    SocketIoModule.forRoot(config),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -76,6 +78,7 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     HttpClientModule,
     ApiModule.forRoot({ rootUrl: 'http://localhost:3000' }),
     MatDividerModule,
+    MatSnackBarModule,
   ],
   providers: [
     ApiTokenInterceptor,
