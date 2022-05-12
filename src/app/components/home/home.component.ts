@@ -26,4 +26,24 @@ export class HomeComponent {
       this.movies = movies;
     });
   }
+
+  onSearchChange($event: Event) {
+    const searchTerm = ($event.target as HTMLInputElement).value;
+    let searchText: string | undefined = undefined;
+    if (searchTerm.trim().length > 0) {
+      searchText = searchTerm.trim();
+    }
+
+    this.moviesService.apiMoviesGet({
+      query: searchText,
+    }).subscribe({
+      next: (movies) => {
+        this.movies = movies;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+      
+  }
 }

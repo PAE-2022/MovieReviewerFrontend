@@ -3,7 +3,7 @@
     <form class="example-form search-box">
         <mat-form-field class="example-full-width " color="primary">
           <mat-label>Search for a movie</mat-label>
-          <input matInput #message maxlength="256" placeholder="Search for a movie...">
+          <input matInput #message maxlength="256" placeholder="Search for a movie..." (change)="onSearchChange($event)">
         </mat-form-field>
       </form>
 </div>

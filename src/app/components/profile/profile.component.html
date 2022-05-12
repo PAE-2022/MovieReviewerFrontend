@@ -15,36 +15,66 @@
         <div class="col-lg-4 profile-info">
           <div class="card shadow-sm">
             <div class="card-header bg-transparent text-center" *ngIf="profileUser.avatar">
+              <a type="button"  class="btn me-5" data-bs-toggle="modal" data-bs-target="#pictureModal">
               <img class="profile_img" [src]="profileUser.avatar | safe" alt="student dp">
+              </a>
               <div class="edit-profile">
                 <h3>{{ profileUser.name }}</h3>
-                <a type="button" class="edit btn me-5" *ngIf="myProfile" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal">
+                <a type="button" class="edit btn me-5" data-bs-toggle="modal" *ngIf="myProfile" 
+                  data-bs-target="#usernameModal">
                   <mat-icon class="settings">edit</mat-icon>
                 </a>
+                <button mat-mini-fab  *ngIf="!myProfile">
+                  <mat-icon>add_circle</mat-icon>
+                 </button>
+                <button mat-mini-fab  *ngIf="!myProfile">	
+                  <mat-icon>cancel</mat-icon>
+              </button>
               </div>
             </div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <!-- Modal upload profile pic-->
+            <div class="modal fade" id="pictureModal" tabindex="-1" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="exampleModalLabel">Edit Profile</h5>
+                    <h5 class="modal-title text-danger" id="exampleModalLabel">Edit Profile Picture</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <form [formGroup]="pictureForm" (ngSubmit)="onSubmitPictureForm()">
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label for="picture" class="form-label">Profile picture</label>
+                        <input type="file" formControlName="picture" class="form-control" id="picture" (change)="onFileSelected($event)">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" type="submit" class="btn btn-success" data-bs-dismiss="modal">Edit</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- Modal Edit user name-->
+            <div class="modal fade" id="usernameModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="exampleModalLabel">Edit User name</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form [formGroup]="editForm" (ngSubmit)="onSubmitForm()">
                     <div class="modal-body">
-
                       <div class="mb-3">
                         <label for="name" class="form-label">User name</label>
-                        <input type="text" formControlName = "name" class="form-control" id="name">
+                        <input type="text" formControlName="name" class="form-control" id="name">
                       </div>
-
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  >Cancel</button>
-                      <button type="button" type ="submit" class="btn btn-success" data-bs-dismiss="modal">Edit</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" type="submit" class="btn btn-success" data-bs-dismiss="modal">Edit</button>
                     </div>
                   </form>
                 </div>

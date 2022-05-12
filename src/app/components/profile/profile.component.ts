@@ -14,6 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
   editForm!: FormGroup;
+  pictureForm!: FormGroup;
   submitted = false;
   //usuario del perfil visible
   profileId!: string;
@@ -23,6 +24,7 @@ export class ProfileComponent implements OnInit {
   userId: string | any;
   user: User | undefined;
   myProfile!: boolean;
+  selectedPictureFile: File | undefined;
 
   constructor(private route: ActivatedRoute, private readonly authService: AuthService, private readonly userService: UsersService, protected sanitizer: DomSanitizer, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -33,7 +35,7 @@ export class ProfileComponent implements OnInit {
     //obtiene el id del usuario del perfil visible
     this.route.params.subscribe(params =>
       this.profileId = params['id']
-    )
+    );
     //obtiene el id del usuario en sesion 
     this.getUser();
 
@@ -50,9 +52,11 @@ export class ProfileComponent implements OnInit {
       name: ['', [Validators.required]],
 
     });
+    this.pictureForm = this.formBuilder.group({
+      picture: ['', [Validators.required]],
+
+    });
   }
-
-
 
   onSubmitForm() {
     if (!this.editForm.valid) {
@@ -62,9 +66,32 @@ export class ProfileComponent implements OnInit {
     this.modifyUser(data);
   }
 
+
+  onSubmitPictureForm() {
+    if (!this.pictureForm.valid) {
+      return;
+    }
+    console.log(this.selectedPictureFile);
+    this.uploadPicture({
+      picture: this.selectedPictureFile!,
+    });
+  }
+
   private modifyUser(data: ModifyUserDto){
     this.userService.apiUsersPatch({body:data}).subscribe(()=>{
-      alert('User edited');
+      this.getProfileUser();
+    }, (error) => {
+      if (error.error.errors) {
+        error.error.errors.forEach((element: any) => {
+          alert(JSON.stringify(element));
+        });
+      }
+    })
+  }
+
+  private uploadPicture(data: { picture:Blob; }){
+    this.userService.apiUsersUploadProfilePost({body:data}).subscribe(()=>{
+      this.getProfileUser();
     }, (error) => {
       if (error.error.errors) {
         error.error.errors.forEach((element: any) => {
@@ -74,9 +101,6 @@ export class ProfileComponent implements OnInit {
     })
   }
   
-
-
-
   goToProfile(id: string | undefined) {
     this.router.navigate(['profile/', id])
       .then(() => {
@@ -105,6 +129,7 @@ export class ProfileComponent implements OnInit {
       this.user = user;
     });
   }
+  
   getProfileUser() {
     this.userService.apiUsersIdGet({
       id: this.profileId,
@@ -140,6 +165,13 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  onFileSelected(event: any) {
+    const file: File = event!.target!.files[0];
+
+    if (file) {
+      this.selectedPictureFile = file;
+    }
+}
 
 
 }

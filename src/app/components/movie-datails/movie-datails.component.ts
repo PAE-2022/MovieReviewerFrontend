@@ -29,7 +29,16 @@ export class MovieDatailsComponent implements OnInit {
     )
     this.getMovieById();
     this.getUserId();
-    this.toggleIsFavorite()
+    if(this.favMovies){
+    this.favMovies.some((el) =>{
+      if (el._id ===this.id){
+        this.isFavorite=true;
+      }
+      else{
+        this.isFavorite=false;
+      }
+    });
+    }
   }
 
   getUserId(){
@@ -38,6 +47,7 @@ export class MovieDatailsComponent implements OnInit {
       id:this.userId,
     }).subscribe((user)=>{
       this.user = user;
+      this.favMovies = user.favorites;
   
     });
   }
@@ -74,21 +84,11 @@ export class MovieDatailsComponent implements OnInit {
   }
 
   toggleIsFavorite(){
-      this.favMovies = this.user.favorites;
-      console.log(this.favMovies);
-      if(this.favMovies){
-      this.favMovies.some((el) =>{
-        if (el._id ===this.id){
-          this.isFavorite=true;
-        }
-        else{
-          this.isFavorite=false;
-        }
-      }
-      )
+    this.isFavorite = !this.isFavorite;
+}
 
-  }
-  console.log(this.isFavorite);}
+
+
   moviePlatform(movie: Movie): string[] {
     return movie.platforms!.map((platform) => platform.name!);
   }
@@ -109,7 +109,7 @@ export class MovieDatailsComponent implements OnInit {
       },
     }).subscribe({
       next: () => {
-        // do nothing
+        this.getMovieById();
       },
       error: (err) => {
         alert(err.error.message);
@@ -127,6 +127,7 @@ export class MovieDatailsComponent implements OnInit {
     }).subscribe({
       next: () => {
         // do nothing
+        this.getMovieById();
       },
       error: (err) => {
         alert(err.error.message);

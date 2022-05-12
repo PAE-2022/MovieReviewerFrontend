@@ -26,7 +26,7 @@
 
                         <div class="card-body">
                             <h3>{{movie.name}}</h3>
-                            <p class="mb-0"><strong class="pr-1">Users Raiting</strong>{{movie.score}}</p><br>
+                            <p class="mb-0"><strong class="pr-1">Users Raiting</strong>{{movie.score?.toFixed(2)}}</p><br>
                             
                             <div class="ec-stars-wrapper">
                                 <form>
@@ -51,7 +51,7 @@
                 <div class="col-lg-8">
                     <div class="card shadow-sm">
                         <div class="card-header bg-transparent border-0">
-                            <h3 class="mb-0"><mat-icon>info</mat-icon>General Information</h3>
+                            <h3 class="mb-0"><mat-icon class="icon">info</mat-icon>General Information</h3>
                         </div>
                         <div class="card-body pt-0">
                             <table class="table table-bordered">
@@ -61,9 +61,9 @@
                                     <td>{{ movie.genres!.join(', ') }}</td>
                                 </tr>
                                 <tr>
-                                    <th width="30%">Release date</th>
+                                    <th width="30%">Release year</th>
                                     <td width="2%">:</td>
-                                    <td>{{ movie.releaseDate | date }}</td>
+                                    <td>{{ movie.releaseDate }}</td>
                                 </tr>
                                 <tr>
                                     <th width="30%">Watch on:</th>
@@ -91,7 +91,7 @@
                     <div style="height: 26px"></div>
                     <div class="card shadow-sm">
                         <div class="card-header bg-transparent border-0">
-                            <h3 class="mb-0"><mat-icon>description</mat-icon>Overview</h3>
+                            <h3 class="mb-0"><mat-icon class="icon">description</mat-icon>Overview</h3>
                         </div>
                         <div class="card-body pt-0">
                             <p> {{ movie.synopsis }} </p>
@@ -100,7 +100,7 @@
                     <div style="height: 26px"></div>
                     <div class="card shadow-sm" *ngIf="movie.trailer">
                         <div class="card-header bg-transparent border-0">
-                            <h3 class="mb-0"><mat-icon>ondemand_video</mat-icon>Trailer</h3>
+                            <h3 class="mb-0"><mat-icon class="icon">ondemand_video</mat-icon>Trailer</h3>
                         </div>
                         <div class="card-body pt-0">
                             <iframe width="560" height="315" [src]="movie.trailer | safe" title="YouTube video player"
@@ -114,7 +114,7 @@
             <div style="height: 26px"></div>
             <div class="card shadow-sm">
                 <div class="card-header bg-transparent border-0">
-                    <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Comments</h3>
+                    <h3 class="mb-0"><i class="far fa-clone pr-1 icon"></i>Comments</h3>
                 </div>
                 <div class="card-body pt-0">
                     <form action="">
